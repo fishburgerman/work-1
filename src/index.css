@@ -11,14 +11,14 @@
    */
   --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', 'Yu Gothic UI', Meiryo, sans-serif;
 
-  /* ライト: グレーブルーのアクセント。500 = 指定の #7296A5 (フォーカス・アイコン・選択の印・ラインアート)。文字・主要なボタンは 600〜800 (白に対して 4.5:1 以上) */
+  /* ライト: グレーブルーのアクセント。500 = 指定の #7296A5 (フォーカス・アイコン・選択の印・ラインアート)。文字・主要なボタンは 600〜800 (600 = #4E6E7D は背景・サイドバー・薄い色の行でも 4.5:1 以上) */
   --color-navy-50: #F0F5F7;
   --color-navy-100: #E1EBEF;
   --color-navy-200: #C6D8DF;
   --color-navy-300: #A3C0CB;
   --color-navy-400: #88AAB8;
   --color-navy-500: #7296A5;
-  --color-navy-600: #57798A;
+  --color-navy-600: #4E6E7D;
   --color-navy-700: #476574;
   --color-navy-800: #3D5663;
   --color-navy-900: #314651;
