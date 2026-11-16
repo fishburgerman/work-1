@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState, type FormEvent } from 'react';
+import { useLayoutEffect, useMemo, useState, type FormEvent } from 'react';
 import { Save } from 'lucide-react';
 import { useAppData } from '../app/AppData';
 import { EMPLOYEE_STATUSES, EMPLOYEE_STATUS_LABEL, EMPLOYMENT_TYPES, type Employee, type EmployeeStatus, type EmploymentType } from '../domain/types';
@@ -88,7 +88,7 @@ export function EmployeeFormModal({
   const [baseUpdatedAt, setBaseUpdatedAt] = useState<string | undefined>(undefined);
   const [conflict, setConflict] = useState(false);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (open) {
       setForm(initial);
       setErrors({});

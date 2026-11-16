@@ -4,7 +4,7 @@
  */
 import { Bot } from 'lucide-react';
 import { currentProvider } from '../../ai/assist';
-import { useEffect, useMemo, useState, type FormEvent } from 'react';
+import { useLayoutEffect, useMemo, useState, type FormEvent } from 'react';
 import { Monitor, Moon, Pencil, Plus, Save, Sun, Tags, Trash2 } from 'lucide-react';
 import { useAppData } from '../../app/AppData';
 import { useTheme, type ThemeMode } from '../../app/theme';
@@ -116,7 +116,7 @@ function CategoryFormModal({ open, onClose, category }: { open: boolean; onClose
   const [slaText, setSlaText] = useState('3');
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [saving, setSaving] = useState(false);
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (open) {
       setForm(initial);
       setKwText(initial.keywords.join('、'));

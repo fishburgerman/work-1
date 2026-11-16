@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState, type FormEvent } from 'react';
+import { useLayoutEffect, useMemo, useState, type FormEvent } from 'react';
 import { Building2, Pencil, Plus, Save, Settings2, Trash2 } from 'lucide-react';
 import { useAppData } from '../app/AppData';
 import { EMPLOYMENT_TYPES, PRIORITIES, PRIORITY_LABEL, type Department, type EmploymentType, type OnboardingRule, type Priority } from '../domain/types';
@@ -120,7 +120,7 @@ function RuleFormModal({ open, onClose, rule }: { open: boolean; onClose: () => 
   const [errors, setErrors] = useState<FieldErrors<RuleInput>>({});
   const [saving, setSaving] = useState(false);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (open) {
       setForm(initial);
       setOffsetText(String(initial.offsetDays));

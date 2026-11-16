@@ -5,7 +5,7 @@
  * - シートを開くたびに requestId を発行し、連打・再送でも1回だけ処理する
  */
 import { AmountField, EmailField, PhoneField, SuggestField, finalizePhone } from '../../ui/SmartInputs';
-import { useEffect, useLayoutEffect, useMemo, useState, type FormEvent } from 'react';
+import { useLayoutEffect, useMemo, useState, type FormEvent } from 'react';
 import { ArrowDownToLine, ArrowRightLeft, ArrowUpFromLine, Save, SlidersHorizontal, UserCheck, Undo2 } from 'lucide-react';
 import { useAppData } from '../../app/AppData';
 import { generateId } from '../../domain/id';
@@ -353,7 +353,7 @@ export function ItemFormModal({ open, onClose, item }: { open: boolean; onClose:
   const [f, setF] = useState(initial);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [busy, setBusy] = useState(false);
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (open) {
       setF(initial);
       setErrors({});
@@ -429,7 +429,7 @@ export function AssetFormModal({ open, onClose, asset, defaultItemId }: { open: 
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [busy, setBusy] = useState(false);
   const [requestId, setRequestId] = useState(() => generateId('req'));
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (open) {
       setF(initial);
       setErrors({});
@@ -496,7 +496,7 @@ export function SupplierFormModal({ open, onClose, supplier }: { open: boolean; 
   );
   const [f, setF] = useState(initial);
   const [errors, setErrors] = useState<Record<string, string>>({});
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (open) {
       setF(initial);
       setErrors({});

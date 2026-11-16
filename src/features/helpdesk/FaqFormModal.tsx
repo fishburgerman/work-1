@@ -3,7 +3,7 @@
  * 解決済みの問い合わせから作る場合は、個別事情の一般化と秘密情報の除去を確認してから保存する
  * (過去の個別対応をそのまま「正解」として公開しないため)。
  */
-import { useEffect, useMemo, useState, type FormEvent } from 'react';
+import { useLayoutEffect, useMemo, useState, type FormEvent } from 'react';
 import { Save, ShieldCheck } from 'lucide-react';
 import { useAppData } from '../../app/AppData';
 import { maskSecrets } from '../../domain/helpdesk/secrets';
@@ -31,7 +31,7 @@ export function FaqFormModal({ open, onClose, faq, source, onSaved }: { open: bo
   const [saving, setSaving] = useState(false);
   const [checks, setChecks] = useState({ generalized: false, noSecrets: false });
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (open) {
       setForm(initial);
       setKeywordText(initial.keywords.join('、'));

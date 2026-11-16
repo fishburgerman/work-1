@@ -3,7 +3,7 @@
  * - 状態に応じて次にやるべき操作を1つだけ強調表示 (チュートリアルなしで迷わないように)
  * - 関連する社員・タスク・FAQへ1タップで移動できる
  */
-import { useEffect, useMemo, useState, type FormEvent } from 'react';
+import { useLayoutEffect, useEffect, useMemo, useState, type FormEvent } from 'react';
 import { compareDue } from '../../domain/tasks';
 import { TargetNotices } from '../../ui/notices';
 import { BackLink } from '../../app/BackLink';
@@ -338,6 +338,11 @@ function ResolutionCard({ inquiry, onFaq, onDraftChange }: { inquiry: Inquiry; o
   const [saving, setSaving] = useState(false);
   useEffect(() => setText(inquiry.resolution), [inquiry.resolution]);
   useEffect(() => onDraftChange(text), [text, onDraftChange]);
+  // 入力した時点で親にも渡す (描画の後の useEffect だけだと、入力の直後に「解決済み」を押したとき、ダイアログに引き継がれない)
+  const edit = (v: string) => {
+    setText(v);
+    onDraftChange(v);
+  };
   const closed = inquiry.status === 'closed';
   const dirty = text.trim() !== inquiry.resolution;
   return (
@@ -360,8 +365,8 @@ function ResolutionCard({ inquiry, onFaq, onDraftChange }: { inquiry: Inquiry; o
           <p className="text-sm whitespace-pre-wrap text-slate-700 dark:text-slate-200">{inquiry.resolution || '（記録なし）'}</p>
         ) : (
           <>
-            <TextAreaField label="解決内容" value={text} onChange={(e) => setText(e.target.value)} rows={3} placeholder="例：ルーターを再起動して復旧" maxLength={2000} />
-            <SecretWarning text={text} onMask={() => setText(maskSecrets(text))} />
+            <TextAreaField label="解決内容" value={text} onChange={(e) => edit(e.target.value)} rows={3} placeholder="例：ルーターを再起動して復旧" maxLength={2000} />
+            <SecretWarning text={text} onMask={() => edit(maskSecrets(text))} />
             <div className="mt-2 flex items-center justify-end gap-2">
               {dirty && <span className="text-xs text-amber-700 dark:text-amber-400">未保存の変更があります</span>}
               <Button
@@ -466,7 +471,7 @@ function EditInquiryModal({ open, onClose, inquiry }: { open: boolean; onClose: 
   const [state, setState] = useState(initial);
   const [errors, setErrors] = useState<FieldErrors<InquiryInput>>({});
   const [saving, setSaving] = useState(false);
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (open) {
       setState(initial);
       setErrors({});
@@ -640,8 +645,8 @@ function ResolveModal({ open, onClose, inquiry, draft }: { open: boolean; onClos
   const { run, data } = useAppData();
   const [text, setText] = useState(inquiry.resolution);
   const [saving, setSaving] = useState(false);
-  useEffect(() => {
-    // 解決内容の欄に入力中の文があれば、それを引き継ぐ
+  useLayoutEffect(() => {
+    // 解決内容の欄に入力中の文があれば、それを引き継ぐ (描画の前に設定する)
     if (open) setText(draft.trim() ? draft : inquiry.resolution);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [open]);
@@ -693,7 +698,7 @@ function CloseModal({ open, onClose, inquiry, tasks }: { open: boolean; onClose:
   const { run } = useAppData();
   const [confirmed, setConfirmed] = useState(false);
   const [saving, setSaving] = useState(false);
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (open) setConfirmed(false);
   }, [open]);
   const check = checkClosable(inquiry, tasks, confirmed);
