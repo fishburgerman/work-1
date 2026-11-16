@@ -90,7 +90,7 @@ export function DocumentsPage() {
             onClick={() => setF({ status: t.key })}
             className={cx(
               'inline-flex min-h-10 shrink-0 items-center gap-1.5 rounded-full border px-3.5 text-[13px] font-semibold',
-              tab === t.key ? 'border-navy-300 bg-navy-100 text-navy-900 dark:border-navy-400 dark:bg-navy-600' : 'border-slate-200 bg-white text-slate-600 dark:border-navy-700 dark:bg-navy-900 dark:text-slate-300',
+              tab === t.key ? 'border-navy-300 bg-navy-100 text-navy-900 dark:border-navy-400 dark:bg-navy-600 dark:text-white' : 'border-slate-200 bg-white text-slate-600 dark:border-navy-700 dark:bg-navy-900 dark:text-slate-300',
             )}
           >
             {t.label}
