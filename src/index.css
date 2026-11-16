@@ -4,38 +4,38 @@
 
 @theme {
   /*
-   * デザイン: California Minimal × macOS (ライトを基本。docs/UI_CALIFORNIA.md)。ダークは Midnight Calm を継承。
+   * デザイン: Coastal Line (California Coastal Minimalism × macOS。ライトを基本。docs/UI_COASTAL_LINE.md)。ダークは Midnight Calm を継承。
    * 各画面は navy / slate / 状態色のクラスで書かれている。そのクラスが参照する色の値 (この変数) を置き換えて、
    * 全画面を同じパレットにする。navy = アクセント (くすんだオーシャンブルー) と、ダークでは背景・面・境界のチャコール。
    * slate = 温かみのある灰色 (文字・境界・オフホワイトの背景)。値はすべて WCAG AA (文字 4.5:1) を確認済み
    */
   --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', 'Yu Gothic UI', Meiryo, sans-serif;
 
-  /* ライト: オーシャンブルーの濃淡。500 = 指定のアクセント #648FA1 (フォーカス・アイコン・選択の印)。文字・主要なボタンは 600〜800 (白に対して 4.5:1 以上) */
-  --color-navy-50: #EFF4F6;
-  --color-navy-100: #DEE8EC;
-  --color-navy-200: #C2D5DD;
-  --color-navy-300: #9DBBC7;
-  --color-navy-400: #7FA4B4;
-  --color-navy-500: #648FA1;
-  --color-navy-600: #4F7A8C;
-  --color-navy-700: #426777;
-  --color-navy-800: #3A5A68;
-  --color-navy-900: #2F4853;
-  --color-navy-950: #1E2F37;
+  /* ライト: グレーブルーのアクセント。500 = 指定の #7296A5 (フォーカス・アイコン・選択の印・ラインアート)。文字・主要なボタンは 600〜800 (白に対して 4.5:1 以上) */
+  --color-navy-50: #F0F5F7;
+  --color-navy-100: #E1EBEF;
+  --color-navy-200: #C6D8DF;
+  --color-navy-300: #A3C0CB;
+  --color-navy-400: #88AAB8;
+  --color-navy-500: #7296A5;
+  --color-navy-600: #57798A;
+  --color-navy-700: #476574;
+  --color-navy-800: #3D5663;
+  --color-navy-900: #314651;
+  --color-navy-950: #202E35;
 
-  /* ライト: 温かみのある灰色。50 = 背景 #F7F6F2・100 = サイドバー #EEEDE7・900 = 主要文字 #28312F。400/500 は補足の文字 (白・背景・サイドバーに対して 4.5:1 以上) */
-  --color-slate-50: #F7F6F2;
-  --color-slate-100: #EEEDE7;
-  --color-slate-200: #E4E2DA;
-  --color-slate-300: #D2CFC6;
-  --color-slate-400: #666C68;
-  --color-slate-500: #5C635F;
-  --color-slate-600: #4A524F;
-  --color-slate-700: #3A423F;
-  --color-slate-800: #2F3735;
-  --color-slate-900: #28312F;
-  --color-slate-950: #1C2221;
+  /* ライト: 背景 #F8F7F4 (50)・サイドバー #F2F1ED (100)・境界 #E6E7E5 (200)・文字 #202A32 (900)。補足の文字は #626D75 (400): 指定の #6D7880 は背景・サイドバーに対して 4.5:1 に届かないため。#6D7880 はアイコン・プレースホルダーに使う */
+  --color-slate-50: #F8F7F4;
+  --color-slate-100: #F2F1ED;
+  --color-slate-200: #E6E7E5;
+  --color-slate-300: #D3D6D5;
+  --color-slate-400: #626D75;
+  --color-slate-500: #5A656D;
+  --color-slate-600: #4C565D;
+  --color-slate-700: #3A444B;
+  --color-slate-800: #2B353C;
+  --color-slate-900: #202A32;
+  --color-slate-950: #151C21;
 
   /* 状態色: 成功 = セージ #83A58D・情報 = オーシャン #648FA1・警告 #C5A77A・エラー #C78383 を基準に彩度を抑えた濃淡 */
   --color-emerald-50: #F4F8F5; --color-emerald-100: #E8F0EA; --color-emerald-200: #D1E0D6; --color-emerald-300: #B3CBBA; --color-emerald-400: #92B59C; --color-emerald-500: #6D9C7B; --color-emerald-600: #50765C; --color-emerald-700: #44644E; --color-emerald-800: #3B4F41; --color-emerald-900: #2C3A30; --color-emerald-950: #1C261F;
@@ -52,37 +52,40 @@
   --color-violet-50: #F6F5F7; --color-violet-100: #EBE9EE; --color-violet-200: #D8D4DE; --color-violet-300: #BEB7C7; --color-violet-400: #A197AF; --color-violet-500: #827594; --color-violet-600: #615770; --color-violet-700: #52495F; --color-violet-800: #443E4C; --color-violet-900: #322E38; --color-violet-950: #211E24;
   --color-purple-50: #F6F5F7; --color-purple-100: #EBE9EE; --color-purple-200: #D8D4DE; --color-purple-300: #BEB7C7; --color-purple-400: #A197AF; --color-purple-500: #827594; --color-purple-600: #615770; --color-purple-700: #52495F; --color-purple-800: #443E4C; --color-purple-900: #322E38; --color-purple-950: #211E24;
 
+  /* ラインアート (Coastal Line) の線の色 */
+  --color-lineart: rgb(114 150 165 / 0.55);
+
   /* サイドバーの背景・ホバーした面 */
-  --color-sidebar: #EEEDE7;
-  --color-surface-hover: #F3F2EE;
+  --color-sidebar: #F2F1ED;
+  --color-surface-hover: #F4F4F1;
 
   /* グラフ用 (状態色)。凡例・件数ラベルを必ず併記する */
   --color-chart-todo: #8E8E93;
-  --color-chart-progress: #4F7A8C;
+  --color-chart-progress: #57798A;
   --color-chart-done: #50765C;
   --color-chart-hold: #8B6B3C;
-  --color-chart-bar: #648FA1;
+  --color-chart-bar: #7296A5;
   --color-chart-high: #893E3E;
   /* 部署別の在籍状況 (在籍中・入社予定・退職予定・休職中・退職済) */
-  --color-staff-active: #4F7A8C;
+  --color-staff-active: #57798A;
   --color-staff-joining: #50765C;
   --color-staff-leaving: #8B6B3C;
   --color-staff-leave: #615770;
   --color-staff-retired: #A1A1A6;
 
-  /* 形: やわらかい角丸 (ボタン・入力 12px、カード・ダイアログ 16px)。影はごく薄く、カード・ダイアログ・通知だけ */
-  --radius-md: 0.625rem;
-  --radius-lg: 0.75rem;
-  --radius-xl: 0.875rem;
-  --radius-2xl: 1rem;
-  --shadow-sm: 0 1px 2px rgb(40 49 47 / 0.05);
-  --shadow-lg: 0 8px 28px rgb(40 49 47 / 0.10);
-  --shadow-2xl: 0 24px 64px rgb(40 49 47 / 0.16);
+  /* 形: カード・ダイアログ 12px、ボタン・入力 8px。影は極めて薄く、区切りは細い境界線 */
+  --radius-md: 0.5rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.625rem;
+  --radius-2xl: 0.75rem;
+  --shadow-sm: 0 1px 2px rgb(32 42 50 / 0.04);
+  --shadow-lg: 0 8px 24px rgb(32 42 50 / 0.08);
+  --shadow-2xl: 0 20px 56px rgb(32 42 50 / 0.14);
 
   /* 文字: 太字を控える */
   --font-weight-semibold: 500;
   --font-weight-bold: 600;
-  --font-weight-extrabold: 650;
+  --font-weight-extrabold: 600;
 
   /* 動き: 短く・移動量を小さく */
   --animate-fade-in: fade-in 150ms ease-out;
@@ -135,6 +138,7 @@
   --color-slate-900: #2C2C2E;
   --color-slate-950: #1C1C1E;
   --color-sidebar: #252528;
+  --color-lineart: rgb(182 205 215 / 0.32);
   --color-surface-hover: #343438;
   --color-chart-todo: #85858B;
   --color-chart-progress: #8FB2C2;
@@ -167,7 +171,7 @@
     line-height: 1.5;
   }
   ::selection {
-    background-color: rgb(100 143 161 / 0.25);
+    background-color: rgb(114 150 165 / 0.25);
   }
   /* 線画アイコンの線幅を統一 (SF Symbols に近い細さ) */
   svg.lucide {
@@ -207,9 +211,9 @@
 
 /* 通知・リンクから移動した対象の強調表示 (控えめに縁取りを1回表示して消える) */
 @keyframes wc-focus-ring {
-  0% { box-shadow: 0 0 0 0 rgb(100 143 161 / 0); background-color: rgb(100 143 161 / 0.14); }
-  25% { box-shadow: 0 0 0 3px rgb(100 143 161 / 0.5); }
-  100% { box-shadow: 0 0 0 0 rgb(100 143 161 / 0); background-color: transparent; }
+  0% { box-shadow: 0 0 0 0 rgb(114 150 165 / 0); background-color: rgb(114 150 165 / 0.14); }
+  25% { box-shadow: 0 0 0 3px rgb(114 150 165 / 0.5); }
+  100% { box-shadow: 0 0 0 0 rgb(114 150 165 / 0); background-color: transparent; }
 }
 .wc-focus {
   animation: wc-focus-ring 2.4s ease-out;
@@ -218,5 +222,5 @@
   scroll-margin-bottom: 6rem;
 }
 @media (prefers-reduced-motion: reduce) {
-  .wc-focus { animation: none; outline: 3px solid rgb(100 143 161 / 0.7); outline-offset: 2px; }
+  .wc-focus { animation: none; outline: 3px solid rgb(114 150 165 / 0.7); outline-offset: 2px; }
 }

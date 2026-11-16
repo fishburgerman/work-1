@@ -90,7 +90,7 @@ export function CardHeader({ title, icon: Icon, action, description }: { title: 
   return (
     <div className="flex items-start justify-between gap-3 px-4 pt-4 sm:px-5 sm:pt-5">
       <div className="min-w-0">
-        <h2 className="flex items-center gap-2 text-[14px] font-bold text-slate-800 dark:text-slate-100">
+        <h2 className="flex items-center gap-2 text-[15px] font-semibold text-slate-800 dark:text-slate-100">
           {Icon && <Icon className="size-4 text-slate-400 dark:text-slate-600" aria-hidden />}
           {title}
         </h2>
@@ -131,7 +131,7 @@ export const inputClass = (error?: boolean, extra?: string) => cx(fieldBase, FIE
 /** 入力欄の高さ (スマホ 44px・PC 36px)。すべての入力欄・選択欄で揃える */
 const FIELD_H = 'h-11 lg:h-9';
 const fieldBase =
-  'block w-full rounded-lg border bg-white px-3 text-slate-900 transition-colors placeholder:text-slate-400 focus:outline-none focus:ring-[3px] dark:bg-navy-900 dark:text-slate-100 dark:placeholder:text-slate-600';
+  'block w-full rounded-lg border bg-white px-3 text-slate-900 transition-colors placeholder:text-[#6D7880] focus:outline-none focus:ring-[3px] dark:bg-navy-900 dark:text-slate-100 dark:placeholder:text-slate-600';
 const fieldOk = 'border-slate-300 focus:border-navy-500 focus:ring-navy-500/25 dark:border-navy-700';
 const fieldErr = 'border-red-400 focus:border-red-500 focus:ring-red-500/25 dark:border-red-700';
 
@@ -270,16 +270,18 @@ export function EmptyState({ icon: Icon, title, description, action }: { icon: L
  * 画面の見出し。PC では画面の上部に固定するツールバー (見出し・説明・主要な操作) になり、
  * 一覧をスクロールしても新規作成などの操作に届く。スマホは上部のヘッダーが固定のため、通常の見出し
  */
-export function PageHeader({ title, description, actions }: { title: string; description?: string; actions?: ReactNode }) {
+export function PageHeader({ title, description, actions, art }: { title: string; description?: string; actions?: ReactNode; art?: ReactNode }) {
   return (
     <div
-      className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between lg:sticky lg:top-0 lg:z-20 lg:-mx-10 lg:-mt-8 lg:mb-8 lg:min-h-16 lg:border-b lg:border-slate-200/80 lg:bg-slate-50/90 lg:px-10 lg:py-3 lg:backdrop-blur-md dark:lg:border-navy-800 dark:lg:bg-navy-950/95"
+      className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between lg:sticky lg:top-0 lg:z-20 lg:-mx-10 lg:-mt-8 lg:mb-8 lg:min-h-[72px] lg:border-b lg:border-slate-200 lg:bg-slate-50/90 lg:px-10 lg:py-3 lg:backdrop-blur-md dark:lg:border-navy-800 dark:lg:bg-navy-950/95"
       data-testid="page-toolbar"
     >
       <div className="min-w-0">
-        <h1 className="text-xl font-bold tracking-tight text-slate-900 lg:text-[20px] dark:text-white">{title}</h1>
-        {description && <p className="mt-0.5 text-sm text-slate-500 lg:text-xs dark:text-slate-400">{description}</p>}
+        <h1 className="text-[22px] font-bold tracking-tight text-slate-900 lg:text-[23px] dark:text-white">{title}</h1>
+        {description && <p className="mt-0.5 text-[13px] text-slate-500 dark:text-slate-400">{description}</p>}
       </div>
+      {/* 装飾のラインアート (ダッシュボードだけ)。見出しの右の余白に置き、スマホでは表示しない */}
+      {art && <div className="pointer-events-none hidden min-w-0 flex-1 justify-end sm:flex" aria-hidden>{art}</div>}
       {actions && <div className="flex shrink-0 flex-wrap gap-2">{actions}</div>}
     </div>
   );

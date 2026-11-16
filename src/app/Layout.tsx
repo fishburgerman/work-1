@@ -29,6 +29,7 @@ import { formatDateJa } from '../domain/date';
 import { useEdgeSwipeBack } from './swipeBack';
 import { NOTICE_KIND_LABEL, navNoticeSummary } from '../domain/notifications';
 import { NavCountBadge } from '../ui/notices';
+import { SidebarWaves } from '../ui/CoastalLine';
 
 interface NavItem {
   key: string;
@@ -245,6 +246,7 @@ export function Layout({ active, children }: { active: string; children: ReactNo
         <div className={cx('space-y-2 border-t border-slate-200 py-3 dark:border-navy-800', collapsed ? 'px-2' : 'px-4')}>
           {!collapsed && (
             <>
+              <SidebarWaves className="-mt-1 mb-1 h-6 w-32" />
               <p className="text-[12px] text-slate-600 dark:text-slate-300">{formatDateJa(today)}</p>
               <p className="text-[11px] font-semibold text-slate-600 dark:text-slate-300">{DEMO_COMPANY_NAME}（架空）</p>
               <DemoNotice compact />
