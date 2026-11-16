@@ -4,7 +4,8 @@
  * 進捗は操作履歴から判定するため、ガイド専用の状態管理を持たない。
  */
 import { useState } from 'react';
-import { CheckCircle2, ChevronDown, Circle, PlayCircle, X } from 'lucide-react';
+import { CheckCircle2, ChevronDown, Circle, X } from 'lucide-react';
+import { SketchWelcome } from '../ui/Sketch';
 import { useAppData } from '../app/AppData';
 import type { ActivityLog } from '../domain/types';
 import { Button, Card, cx } from '../ui/primitives';
@@ -61,7 +62,7 @@ export function DemoGuide() {
   if (!state.startedAt)
     return (
       <Card className="mb-4 flex flex-col gap-3 p-4 sm:flex-row sm:items-center">
-        <PlayCircle className="size-8 shrink-0 text-navy-600 dark:text-navy-300" aria-hidden />
+        <SketchWelcome className="size-11 shrink-0" />
         <div className="flex-1">
           <p className="font-semibold">はじめての方へ：ヘルプデスク業務を一通り体験する</p>
           <p className="text-xs text-slate-500">問い合わせ登録 → 自動分類 → タスク作成 → 完了 → 分析 の流れを、実際に操作しながら確認できます（約3分）。</p>

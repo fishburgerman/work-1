@@ -310,13 +310,13 @@ export function TasksPage({ query }: { query: URLSearchParams }) {
               onClick={() => setF({ status: s.key, ...(legacy ? { progress: legacy } : {}) })}
               className={cx(
                 'inline-flex min-h-10 shrink-0 items-center gap-1.5 rounded-full border px-3.5 text-[13px] font-semibold transition-colors',
-                scope === s.key && !legacy ? 'border-navy-800 bg-navy-800 text-white dark:border-navy-400 dark:bg-navy-600' : 'border-slate-200 bg-white text-slate-600 hover:border-slate-300 dark:border-navy-700 dark:bg-navy-900 dark:text-slate-300',
+                scope === s.key && !legacy ? 'border-navy-300 bg-navy-100 text-navy-900 dark:border-navy-400 dark:bg-navy-600' : 'border-slate-200 bg-white text-slate-600 hover:border-slate-300 dark:border-navy-700 dark:bg-navy-900 dark:text-slate-300',
                 s.key === 'overdue' && counts.overdue > 0 && scope !== s.key && 'border-red-200 text-red-600 dark:border-red-900 dark:text-red-400',
               )}
               data-testid={`scope-${s.key}`}
             >
               {s.label}
-              <span className={cx('rounded-full px-1.5 text-[11px] tabular-nums', scope === s.key && !legacy ? 'bg-white/20 dark:bg-black/25' : 'bg-slate-100 dark:bg-navy-800')}>{counts[s.key]}</span>
+              <span className={cx('rounded-full px-1.5 text-[11px] tabular-nums', scope === s.key && !legacy ? 'bg-white/80 dark:bg-black/25' : 'bg-slate-100 dark:bg-navy-800')}>{counts[s.key]}</span>
             </button>
           ))}
         </div>

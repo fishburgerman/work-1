@@ -29,7 +29,7 @@ import { formatDateJa } from '../domain/date';
 import { useEdgeSwipeBack } from './swipeBack';
 import { NOTICE_KIND_LABEL, navNoticeSummary } from '../domain/notifications';
 import { NavCountBadge } from '../ui/notices';
-import { SidebarWaves } from '../ui/CoastalLine';
+import { SidebarWaves, SketchLogo } from '../ui/Sketch';
 
 interface NavItem {
   key: string;
@@ -89,10 +89,11 @@ function ThemeButton({ className, iconOnly }: { className?: string; iconOnly?: b
 function Logo({ compact }: { compact?: boolean }) {
   return (
     <div className="flex min-w-0 items-center gap-2.5">
-      <img src="./favicon.svg" alt="" className="size-7 shrink-0" />
+      <SketchLogo className="size-8 shrink-0" />
       {!compact && (
         <div className="min-w-0 leading-tight">
-          <p className="text-[14px] font-bold text-slate-900 dark:text-white">WorkCore</p>
+          {/* ロゴだけ手書き風の書体 (本文・入力欄・表には使わない) */}
+          <p className="font-hand text-[17px] font-semibold text-slate-900 dark:text-white">WorkCore</p>
           <p className="text-[11px] text-slate-500 dark:text-slate-400">業務管理・自動化</p>
         </div>
       )}
@@ -205,10 +206,10 @@ export function Layout({ active, children }: { active: string; children: ReactNo
                       className={cx(
                         'relative flex h-8 items-center gap-2.5 rounded-md text-[13px] transition-colors',
                         collapsed ? 'justify-center px-0' : 'px-2.5',
-                        on ? 'bg-slate-200/80 font-semibold text-slate-900 dark:bg-navy-800 dark:text-slate-100' : 'text-slate-700 hover:bg-slate-200/50 dark:text-slate-300 dark:hover:bg-surface-hover',
+                        on ? 'bg-navy-100 font-semibold text-slate-900 dark:bg-navy-800 dark:text-slate-100' : 'text-slate-700 hover:bg-slate-200/60 dark:text-slate-300 dark:hover:bg-surface-hover',
                       )}
                     >
-                      <item.icon className={cx('size-4 shrink-0', on ? 'text-navy-600 dark:text-navy-500' : 'text-slate-500 dark:text-slate-600')} aria-hidden />
+                      <item.icon className={cx('size-4 shrink-0', on ? 'text-navy-700 dark:text-navy-500' : 'text-slate-500 dark:text-slate-600')} aria-hidden />
                       <span className={collapsed ? 'sr-only' : 'min-w-0 flex-1 truncate'}>{item.label}</span>
                       {item.key === 'notifications' ? (
                         unreadCount > 0 && (
@@ -299,9 +300,9 @@ export function Layout({ active, children }: { active: string; children: ReactNo
                 aria-current={on ? 'page' : undefined}
                 className={cx('relative flex min-h-16 flex-col items-center justify-center gap-1 text-[11px] font-medium transition-colors', on ? 'text-slate-900 dark:text-slate-100' : 'text-slate-500 dark:text-slate-400')}
               >
-                {on && <span className="absolute top-0 h-0.5 w-10 rounded-full bg-navy-600 dark:bg-navy-500" aria-hidden />}
+                {on && <span className="absolute inset-x-3 top-1.5 -z-10 h-[calc(100%-0.75rem)] rounded-xl bg-navy-100 dark:bg-navy-800" aria-hidden />}
                 <span className="relative">
-                  <item.icon className={cx('size-[22px]', on && 'text-navy-600 dark:text-navy-500')} aria-hidden />
+                  <item.icon className={cx('size-[22px]', on && 'text-navy-700 dark:text-navy-500')} aria-hidden />
                   <NavCountBadge count={n} worst={summary(item.key).worst} label={badgeLabel(item.key)} className="absolute -right-3 -top-2 !text-[10px] !leading-4" />
                 </span>
                 {item.short}

@@ -90,11 +90,11 @@ export function DocumentsPage() {
             onClick={() => setF({ status: t.key })}
             className={cx(
               'inline-flex min-h-10 shrink-0 items-center gap-1.5 rounded-full border px-3.5 text-[13px] font-semibold',
-              tab === t.key ? 'border-navy-800 bg-navy-800 text-white dark:border-navy-400 dark:bg-navy-600' : 'border-slate-200 bg-white text-slate-600 dark:border-navy-700 dark:bg-navy-900 dark:text-slate-300',
+              tab === t.key ? 'border-navy-300 bg-navy-100 text-navy-900 dark:border-navy-400 dark:bg-navy-600' : 'border-slate-200 bg-white text-slate-600 dark:border-navy-700 dark:bg-navy-900 dark:text-slate-300',
             )}
           >
             {t.label}
-            <span className={cx('rounded-full px-1.5 text-[11px] tabular-nums', tab === t.key ? 'bg-white/20 dark:bg-black/25' : 'bg-slate-100 dark:bg-navy-800')}>{counts[t.key]}</span>
+            <span className={cx('rounded-full px-1.5 text-[11px] tabular-nums', tab === t.key ? 'bg-white/80 dark:bg-black/25' : 'bg-slate-100 dark:bg-navy-800')}>{counts[t.key]}</span>
           </button>
         ))}
       </div>
@@ -301,7 +301,7 @@ function ExportModal({ open, onClose, visible, selectedIds, onDone }: { open: bo
             {DOCUMENT_TYPES.map((t) => {
               const on = types.includes(t);
               return (
-                <button key={t} type="button" aria-pressed={on} onClick={() => setTypes((x) => (on ? x.filter((y) => y !== t) : [...x, t]))} className={cx('min-h-9 rounded-full border px-3 text-xs font-semibold', on ? 'border-navy-700 bg-navy-700 text-white' : 'border-slate-300 bg-white dark:border-navy-700 dark:bg-navy-900')}>
+                <button key={t} type="button" aria-pressed={on} onClick={() => setTypes((x) => (on ? x.filter((y) => y !== t) : [...x, t]))} className={cx('min-h-9 rounded-full border px-3 text-xs font-semibold', on ? 'border-navy-300 bg-navy-100 text-navy-900' : 'border-slate-300 bg-white dark:border-navy-700 dark:bg-navy-900')}>
                   {DOCUMENT_TYPE_LABEL[t]}
                 </button>
               );

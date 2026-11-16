@@ -218,7 +218,7 @@ export function InquiryDetailPage({ inquiryId, query }: { inquiryId: string; que
                 className={cx(
                   'min-h-11 rounded-lg border text-sm font-semibold transition-colors',
                   inquiry.status === s
-                    ? 'border-navy-700 bg-navy-700 text-white dark:border-navy-400 dark:bg-navy-500 dark:text-navy-950'
+                    ? 'border-navy-300 bg-navy-100 text-navy-900 dark:border-navy-400 dark:bg-navy-500 dark:text-navy-950'
                     : 'border-slate-200 text-slate-600 hover:bg-slate-50 dark:border-navy-700 dark:text-slate-300 dark:hover:bg-navy-800',
                 )}
               >

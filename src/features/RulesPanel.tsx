@@ -222,7 +222,7 @@ function RuleFormModal({ open, onClose, rule }: { open: boolean; onClose: () => 
                   onClick={() => toggleType(t)}
                   className={cx(
                     'min-h-10 rounded-full border px-3 text-[13px] font-medium transition-colors',
-                    on ? 'border-navy-700 bg-navy-700 text-white dark:border-navy-400 dark:bg-navy-500 dark:text-navy-950' : 'border-slate-300 text-slate-600 dark:border-navy-700 dark:text-slate-300',
+                    on ? 'border-navy-300 bg-navy-100 text-navy-900 dark:border-navy-400 dark:bg-navy-500 dark:text-navy-950' : 'border-slate-300 text-slate-600 dark:border-navy-700 dark:text-slate-300',
                   )}
                 >
                   {t}

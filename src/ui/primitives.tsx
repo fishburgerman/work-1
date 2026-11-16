@@ -1,5 +1,6 @@
 import { forwardRef, useId, useState, type ButtonHTMLAttributes, type HTMLAttributes, type InputHTMLAttributes, type ReactNode, type SelectHTMLAttributes, type TextareaHTMLAttributes } from 'react';
 import { SlidersHorizontal, type LucideIcon } from 'lucide-react';
+import { SketchRing } from './Sketch';
 
 export function cx(...classes: (string | false | null | undefined)[]): string {
   return classes.filter(Boolean).join(' ');
@@ -9,8 +10,8 @@ export function cx(...classes: (string | false | null | undefined)[]): string {
 
 type Variant = 'primary' | 'secondary' | 'ghost' | 'danger';
 const VARIANT: Record<Variant, string> = {
-  // 主要な操作だけアクセント (ダークは明るいアクセントの地に暗い文字でコントラストを確保)。影・発光は使わない
-  primary: 'bg-navy-700 text-white hover:bg-navy-600 active:bg-navy-800 dark:bg-navy-500 dark:text-navy-950 dark:hover:bg-navy-400 dark:active:bg-navy-500',
+  // 主要な操作だけセージ (#A8BDAA の地に #343D38 の文字で 5.6:1)。影・発光は使わない
+  primary: 'bg-navy-300 text-slate-900 hover:bg-navy-400 active:bg-navy-400 dark:bg-navy-500 dark:text-navy-950 dark:hover:bg-navy-400 dark:active:bg-navy-500',
   secondary:
     'bg-white text-slate-700 border border-slate-300 hover:bg-slate-50 active:bg-slate-100 dark:bg-navy-900 dark:text-slate-100 dark:border-navy-700 dark:hover:bg-surface-hover dark:active:bg-navy-800',
   ghost: 'text-slate-600 hover:bg-slate-100 active:bg-slate-200 dark:text-slate-300 dark:hover:bg-surface-hover dark:active:bg-navy-800',
@@ -131,7 +132,7 @@ export const inputClass = (error?: boolean, extra?: string) => cx(fieldBase, FIE
 /** 入力欄の高さ (スマホ 44px・PC 36px)。すべての入力欄・選択欄で揃える */
 const FIELD_H = 'h-11 lg:h-9';
 const fieldBase =
-  'block w-full rounded-lg border bg-white px-3 text-slate-900 transition-colors placeholder:text-[#6D7880] focus:outline-none focus:ring-[3px] dark:bg-navy-900 dark:text-slate-100 dark:placeholder:text-slate-600';
+  'block w-full rounded-lg border bg-white px-3 text-slate-900 transition-colors placeholder:text-[#79867D] focus:outline-none focus:ring-[3px] dark:bg-navy-900 dark:text-slate-100 dark:placeholder:text-slate-600';
 const fieldOk = 'border-slate-300 focus:border-navy-500 focus:ring-navy-500/25 dark:border-navy-700';
 const fieldErr = 'border-red-400 focus:border-red-500 focus:ring-red-500/25 dark:border-red-700';
 
@@ -256,7 +257,9 @@ export function FilterSelect({
 export function EmptyState({ icon: Icon, title, description, action }: { icon: LucideIcon; title: string; description?: string; action?: ReactNode }) {
   return (
     <div className="flex flex-col items-center px-6 py-12 text-center">
-      <div className="flex size-12 items-center justify-center rounded-full bg-slate-100 text-slate-400 dark:bg-navy-800 dark:text-slate-500">
+      {/* 手描きの輪で囲んだアイコン (空の状態だけの小さな装飾) */}
+      <div className="relative flex size-16 items-center justify-center text-slate-500 dark:text-slate-400">
+        <SketchRing className="absolute inset-0 size-16" />
         <Icon className="size-6" aria-hidden />
       </div>
       <p className="mt-3 font-semibold text-slate-700 dark:text-slate-200">{title}</p>
@@ -277,7 +280,7 @@ export function PageHeader({ title, description, actions, art }: { title: string
       data-testid="page-toolbar"
     >
       <div className="min-w-0">
-        <h1 className="text-[22px] font-bold tracking-tight text-slate-900 lg:text-[23px] dark:text-white">{title}</h1>
+        <h1 className="text-[20px] font-semibold tracking-tight text-slate-900 dark:text-white">{title}</h1>
         {description && <p className="mt-0.5 text-[13px] text-slate-500 dark:text-slate-400">{description}</p>}
       </div>
       {/* 装飾のラインアート (ダッシュボードだけ)。見出しの右の余白に置き、スマホでは表示しない */}

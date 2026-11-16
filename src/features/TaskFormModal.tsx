@@ -468,7 +468,7 @@ export function TaskFormModal({
                           {WD.map((w, i) => {
                             const on = form.recurrence!.weekdays?.includes(i) ?? false;
                             return (
-                              <button key={w} type="button" aria-pressed={on} onClick={() => set('recurrence', { ...form.recurrence!, weekdays: on ? form.recurrence!.weekdays!.filter((x) => x !== i) : [...(form.recurrence!.weekdays ?? []), i].sort() })} className={cx('size-10 rounded-full border text-sm font-semibold', on ? 'border-navy-700 bg-navy-700 text-white' : 'border-slate-300 text-slate-600 dark:border-navy-700 dark:text-slate-300')}>
+                              <button key={w} type="button" aria-pressed={on} onClick={() => set('recurrence', { ...form.recurrence!, weekdays: on ? form.recurrence!.weekdays!.filter((x) => x !== i) : [...(form.recurrence!.weekdays ?? []), i].sort() })} className={cx('size-10 rounded-full border text-sm font-semibold', on ? 'border-navy-300 bg-navy-100 text-navy-900' : 'border-slate-300 text-slate-600 dark:border-navy-700 dark:text-slate-300')}>
                                 {w}
                               </button>
                             );

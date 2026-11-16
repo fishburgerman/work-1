@@ -146,7 +146,7 @@ export function QuantitySheet({ item, mode, onClose }: { item: Item | null; mode
           {mode !== 'adjust' && mode !== 'transfer' && (
             <div className="mt-2 flex justify-center gap-2">
               {[1, 5, 10].map((n) => (
-                <button key={n} type="button" onClick={() => setQty(n)} className={cx('min-h-9 rounded-full border px-3 text-xs font-semibold', qty === n ? 'border-navy-700 bg-navy-700 text-white' : 'border-slate-300 text-slate-600 dark:border-navy-700 dark:text-slate-300')}>
+                <button key={n} type="button" onClick={() => setQty(n)} className={cx('min-h-9 rounded-full border px-3 text-xs font-semibold', qty === n ? 'border-navy-300 bg-navy-100 text-navy-900' : 'border-slate-300 text-slate-600 dark:border-navy-700 dark:text-slate-300')}>
                   {n}
                 </button>
               ))}
@@ -159,7 +159,7 @@ export function QuantitySheet({ item, mode, onClose }: { item: Item | null; mode
             <legend className="mb-1.5 text-[13px] font-semibold text-slate-700 dark:text-slate-200">理由{mode === 'adjust' && <span className="text-red-500">*</span>}</legend>
             <div className="flex flex-wrap gap-2">
               {(mode === 'issue' ? ISSUE_REASONS : ADJUST_REASONS).map((r) => (
-                <button key={r} type="button" onClick={() => setReason(r)} aria-pressed={reason === r} className={cx('min-h-10 rounded-full border px-3 text-[13px]', reason === r ? 'border-navy-700 bg-navy-700 text-white dark:border-navy-400 dark:bg-navy-500 dark:text-navy-950' : 'border-slate-300 text-slate-600 dark:border-navy-700 dark:text-slate-300')}>
+                <button key={r} type="button" onClick={() => setReason(r)} aria-pressed={reason === r} className={cx('min-h-10 rounded-full border px-3 text-[13px]', reason === r ? 'border-navy-300 bg-navy-100 text-navy-900 dark:border-navy-400 dark:bg-navy-500 dark:text-navy-950' : 'border-slate-300 text-slate-600 dark:border-navy-700 dark:text-slate-300')}>
                   {r}
                 </button>
               ))}

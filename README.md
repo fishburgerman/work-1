@@ -5,7 +5,7 @@
 > **Phase 2**：社内ヘルプデスク・問い合わせ自動分類・FAQ提案・タスク連携・分析、Phase 1 の UX 改善
 > **Phase 3**：在庫・備品・IT資産・購買管理、社員・ヘルプデスクとの連携、自動化エンジン（提案 → 承認 → 実行 → 履歴）
 > **Phase 4**：書類管理（請求書・領収書・納品書・見積書・申請書）、端末内OCR・PDF解析、確認・修正、重複検出、CSV出力
-> **UI デザイン Coastal Line**：California Coastal Minimalism × macOS（オフホワイトの背景・グレーブルーのアクセント・細い手描き風の海岸線のラインアート〔ダッシュボード・サイドバー〕・角丸 12px・ごく薄い影。ダークは Midnight Calm。機能・データは変更なし）
+> **UI デザイン California Sketch**：Warm Minimal Workspace（オフホワイトの背景・セージグリーンの選択と主要なボタン・テラコッタの補助色・手描きのラインアート〔ロゴ・ダッシュボード・ウェルカム・空データ・サイドバー〕・角丸 12px/9px。エラー・警告ははっきりした色。機能・データは変更なし）
 > **UI リニューアル**：Mac Native × Midnight Calm（チャコールのダークを基本・セージのアクセント・折りたためるサイドバー・上部のツールバー・控えめな角丸と影。機能・データは変更なし）
 > **Phase 13**：方針の再定義（学習・実験用・利用者1人・クラウドバックエンドと有料サービスは使わない）と計画の見直し、保存の差分更新（書き込みの記録・変わったデータだけの読み直し）で 50,000件の保存を短縮
 > **Phase 12**：性能と日付（タスク 10,000件でも主要な操作が1秒以内〔改善前は保存が終わらない〕、一覧の100件ずつの表示、日本の祝日・会社の休業日を考慮した期限、繰り返しの休みの日の調整・完了日基準）
@@ -242,7 +242,7 @@ npm run test:e2e     # E2E（Chromium のパスは CHROMIUM_PATH で指定可）
 | [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) | システム構成・データモデル・マイグレーション・状態遷移 |
 | [docs/META_DESIGN.md](docs/META_DESIGN.md) | メタ理解設計：参考資料、抽出した原理、採用・不採用の理由、検証結果 |
 | [docs/UX_AUDIT.md](docs/UX_AUDIT.md) | UX 監査と改善（Phase 1〜3） |
-| [docs/UI_COASTAL_LINE.md](docs/UI_COASTAL_LINE.md) | UI デザイン Coastal Line：パレット（指定色とアクセシビリティのための調整）・形と文字・ラインアートの仕様 |
+| [docs/UI_CALIFORNIA_SKETCH.md](docs/UI_CALIFORNIA_SKETCH.md) | UI デザイン California Sketch：パレット（指定色とアクセシビリティのための調整）・形と文字・手描きのラインアートの仕様 |
 | [docs/UI_RENEWAL_RESULTS.md](docs/UI_RENEWAL_RESULTS.md) | UI リニューアル（Mac Native × Midnight Calm）の変更内容・検証結果。計画は [UI_RENEWAL_PLAN.md](docs/UI_RENEWAL_PLAN.md) |
 | [docs/ROADMAP.md](docs/ROADMAP.md) | 開発の方針と順序（2026-10-19 再定義）。これまでの計画の分類（継続・実験・中止） |
 | [docs/PHASE13_RESULTS.md](docs/PHASE13_RESULTS.md) | Phase 13：保存の差分更新（改善前後の計測・仕組み・検証） |

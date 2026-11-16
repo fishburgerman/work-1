@@ -39,7 +39,7 @@ const STAFF_COLOR: Record<StaffSegment, string> = {
   retired: 'var(--color-staff-retired)',
 };
 import { Badge, Card, CardHeader, EmptyState, PageHeader, cx } from '../ui/primitives';
-import { CoastalHorizon } from '../ui/CoastalLine';
+import { SketchHorizon } from '../ui/Sketch';
 import { DEMO_COMPANY_NAME } from '../demo/demoData';
 
 function StatCard({
@@ -134,7 +134,7 @@ export function DashboardPage() {
       <PageHeader
         title="ダッシュボード"
         description={`${DEMO_COMPANY_NAME}（架空）の業務状況をリアルタイムに集計しています`}
-        art={<CoastalHorizon className="h-14 w-full max-w-[420px]" />}
+        art={<SketchHorizon className="h-14 w-full max-w-[360px]" />}
       />
       <DemoGuide />
       <NoticeSummaryCard />
