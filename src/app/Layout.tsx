@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import { useState, type ReactNode } from 'react';
 import {
   Bell,
   BookOpen,
@@ -13,6 +13,8 @@ import {
   Menu,
   Monitor,
   Moon,
+  PanelLeftClose,
+  PanelLeftOpen,
   Settings,
   Sun,
   UserPlus,
@@ -35,20 +37,20 @@ interface NavItem {
   icon: LucideIcon;
 }
 
-/** PCサイドバー: 日常業務 → 管理 の順に並べる */
-export const NAV_ITEMS: NavItem[] = [
-  { key: 'dashboard', href: '#/', label: 'ダッシュボード', icon: LayoutDashboard },
-  { key: 'notifications', href: '#/notifications', label: '通知センター', icon: Bell },
-  { key: 'helpdesk', href: '#/helpdesk', label: 'ヘルプデスク', icon: Headset },
-  { key: 'inventory', href: '#/inventory', label: '在庫・資産・購買', icon: Boxes },
-  { key: 'documents', href: '#/documents', label: '書類管理', icon: FileText },
-  { key: 'tasks', href: '#/tasks', label: 'タスク管理', icon: ClipboardList },
-  { key: 'automation', href: '#/automation', label: '自動化センター', icon: Sparkles },
-  { key: 'employees', href: '#/employees', label: '社員管理', icon: Users },
-  { key: 'onboarding', href: '#/onboarding', label: '入社準備', icon: UserPlus },
-  { key: 'faq', href: '#/faq', label: 'FAQ', icon: BookOpen },
-  { key: 'data', href: '#/data', label: 'データ管理', icon: Database },
-  { key: 'settings', href: '#/settings', label: '設定', icon: Settings },
+/** PCサイドバー: 日常業務 → 管理 の順に並べる (group は Finder のサイドバーの見出しのように区切る) */
+export const NAV_ITEMS: (NavItem & { group: '業務' | '管理' })[] = [
+  { key: 'dashboard', href: '#/', label: 'ダッシュボード', icon: LayoutDashboard , group: '業務' },
+  { key: 'notifications', href: '#/notifications', label: '通知センター', icon: Bell , group: '業務' },
+  { key: 'helpdesk', href: '#/helpdesk', label: 'ヘルプデスク', icon: Headset , group: '業務' },
+  { key: 'inventory', href: '#/inventory', label: '在庫・資産・購買', icon: Boxes , group: '業務' },
+  { key: 'documents', href: '#/documents', label: '書類管理', icon: FileText , group: '業務' },
+  { key: 'tasks', href: '#/tasks', label: 'タスク管理', icon: ClipboardList , group: '業務' },
+  { key: 'automation', href: '#/automation', label: '自動化センター', icon: Sparkles , group: '業務' },
+  { key: 'employees', href: '#/employees', label: '社員管理', icon: Users , group: '管理' },
+  { key: 'onboarding', href: '#/onboarding', label: '入社準備', icon: UserPlus , group: '管理' },
+  { key: 'faq', href: '#/faq', label: 'FAQ', icon: BookOpen , group: '管理' },
+  { key: 'data', href: '#/data', label: 'データ管理', icon: Database , group: '管理' },
+  { key: 'settings', href: '#/settings', label: '設定', icon: Settings , group: '管理' },
 ];
 
 /** スマホ下部ナビ: 頻度の高い4つ + メニュー (iOS の「その他」タブと同じ考え方) */
@@ -62,7 +64,7 @@ const BOTTOM_ITEMS: (NavItem & { short: string; covers?: string[] })[] = [
 
 const FUTURE_MODULES = ['ワークフロー（承認経路）'];
 
-function ThemeButton({ className }: { className?: string }) {
+function ThemeButton({ className, iconOnly }: { className?: string; iconOnly?: boolean }) {
   const { mode, cycle } = useTheme();
   const Icon = mode === 'light' ? Sun : mode === 'dark' ? Moon : Monitor;
   const label = mode === 'light' ? 'ライト' : mode === 'dark' ? 'ダーク' : '端末設定';
@@ -71,25 +73,28 @@ function ThemeButton({ className }: { className?: string }) {
       type="button"
       onClick={cycle}
       className={cx(
-        'inline-flex min-h-11 items-center gap-2 rounded-lg px-3 text-sm text-slate-600 transition-colors hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-navy-800',
+        'inline-flex min-h-11 items-center gap-2 rounded-lg px-3 text-sm text-slate-600 transition-colors hover:bg-slate-200/60 lg:min-h-8 lg:rounded-md lg:px-2.5 lg:text-[13px] dark:text-slate-300 dark:hover:bg-surface-hover',
         className,
       )}
       aria-label={`表示テーマ: ${label}（タップで切替）`}
+      title={iconOnly ? `表示テーマ: ${label}` : undefined}
     >
-      <Icon className="size-4" aria-hidden />
-      <span className="text-xs">{label}</span>
+      <Icon className="size-4 text-slate-500 dark:text-slate-400" aria-hidden />
+      {!iconOnly && <span className="text-xs">{label}</span>}
     </button>
   );
 }
 
-function Logo() {
+function Logo({ compact }: { compact?: boolean }) {
   return (
-    <div className="flex items-center gap-2.5">
-      <img src="./favicon.svg" alt="" className="size-8" />
-      <div className="leading-tight">
-        <p className="text-[15px] font-extrabold tracking-tight text-navy-900 dark:text-white">WorkCore</p>
-        <p className="text-[10px] font-medium text-slate-500 dark:text-slate-400">業務管理・自動化</p>
-      </div>
+    <div className="flex min-w-0 items-center gap-2.5">
+      <img src="./favicon.svg" alt="" className="size-7 shrink-0" />
+      {!compact && (
+        <div className="min-w-0 leading-tight">
+          <p className="text-[14px] font-bold text-slate-900 dark:text-white">WorkCore</p>
+          <p className="text-[11px] text-slate-500 dark:text-slate-400">業務管理・自動化</p>
+        </div>
+      )}
     </div>
   );
 }
@@ -106,8 +111,31 @@ export function DemoNotice({ compact }: { compact?: boolean }) {
   );
 }
 
+const SIDEBAR_KEY = 'workcore-sidebar';
+/** サイドバーの折りたたみ (端末に保存。保存できない環境では開いた状態) */
+function useSidebarCollapsed(): [boolean, () => void] {
+  const [collapsed, setCollapsed] = useState(() => {
+    try {
+      return localStorage.getItem(SIDEBAR_KEY) === 'collapsed';
+    } catch {
+      return false;
+    }
+  });
+  const toggle = () =>
+    setCollapsed((v) => {
+      try {
+        localStorage.setItem(SIDEBAR_KEY, v ? 'expanded' : 'collapsed');
+      } catch {
+        /* 保存できなくても表示は切り替える */
+      }
+      return !v;
+    });
+  return [collapsed, toggle];
+}
+
 export function Layout({ active, children }: { active: string; children: ReactNode }) {
   const { notices, unreadCount, today } = useAppData();
+  const [collapsed, toggleSidebar] = useSidebarCollapsed();
   useEdgeSwipeBack();
   // バッジはすべて共通の通知 (実データから導出) から数える。件数 = 未処理 (対応が終わるまで残る)
   const summary = (key: string) => navNoticeSummary(notices, key);
@@ -127,64 +155,107 @@ export function Layout({ active, children }: { active: string; children: ReactNo
           e.preventDefault();
           document.getElementById('main')?.focus();
         }}
-        className="sr-only z-[100] rounded-lg bg-navy-800 px-4 py-3 text-sm font-semibold text-white focus:not-sr-only focus:fixed focus:left-3 focus:top-3"
+        className="sr-only z-[100] rounded-lg bg-navy-800 px-4 py-3 text-sm font-semibold text-white focus:not-sr-only focus:fixed focus:left-3 focus:top-3 dark:bg-navy-500 dark:text-navy-950"
         data-testid="skip-link"
       >
         本文へスキップ
       </a>
-      {/* PC: サイドバー */}
-      <aside className="fixed inset-y-0 left-0 z-30 hidden w-60 flex-col border-r border-slate-200 bg-white lg:flex dark:border-navy-800 dark:bg-navy-900">
-        <div className="px-5 py-5">
-          <Logo />
+      {/* PC: サイドバー (Finder のように、見出しで区切った縦のナビ。折りたたむとアイコンだけ) */}
+      <aside
+        className={cx(
+          'fixed inset-y-0 left-0 z-30 hidden flex-col border-r border-slate-200 bg-sidebar transition-[width] duration-150 lg:flex dark:border-navy-800',
+          collapsed ? 'w-16' : 'w-60',
+        )}
+        data-testid="sidebar"
+        data-collapsed={collapsed ? 'true' : 'false'}
+      >
+        <div className={cx('flex h-14 shrink-0 items-center', collapsed ? 'justify-center px-2' : 'justify-between pl-4 pr-2')}>
+          {!collapsed && <Logo />}
+          <button
+            type="button"
+            onClick={toggleSidebar}
+            aria-label={collapsed ? 'サイドバーを広げる' : 'サイドバーを折りたたむ'}
+            aria-expanded={!collapsed}
+            title={collapsed ? 'サイドバーを広げる' : 'サイドバーを折りたたむ'}
+            className="inline-flex size-8 items-center justify-center rounded-md text-slate-500 transition-colors hover:bg-slate-200/60 hover:text-slate-800 dark:text-slate-400 dark:hover:bg-surface-hover dark:hover:text-slate-100"
+            data-testid="sidebar-toggle"
+          >
+            {collapsed ? <PanelLeftOpen className="size-[18px]" aria-hidden /> : <PanelLeftClose className="size-[18px]" aria-hidden />}
+          </button>
         </div>
-        <nav className="flex-1 space-y-0.5 overflow-y-auto px-3" aria-label="メインメニュー">
-          {NAV_ITEMS.map((item) => {
-            const on = item.key === active;
-            const n = summary(item.key).count;
-            return (
-              <a
-                key={item.key}
-                href={item.href}
-                aria-current={on ? 'page' : undefined}
-                className={cx(
-                  'flex min-h-11 items-center gap-3 rounded-lg px-3 text-sm font-medium transition-colors',
-                  on ? 'bg-navy-50 text-navy-900 dark:bg-navy-800 dark:text-white' : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-navy-800/60',
-                )}
-              >
-                <item.icon className={cx('size-[18px]', on ? 'text-navy-700 dark:text-navy-200' : 'text-slate-400')} aria-hidden />
-                <span className="flex-1">{item.label}</span>
-                {item.key === 'notifications' ? (
-                  unreadCount > 0 && (
-                    <span className="rounded-full px-1.5 text-[11px] font-bold text-navy-700 ring-1 ring-inset ring-navy-300 dark:text-navy-100 dark:ring-navy-600" aria-label={`未読の通知 ${unreadCount}件`}>
-                      {unreadCount}
-                    </span>
-                  )
-                ) : (
-                  <NavCountBadge count={n} worst={summary(item.key).worst} label={badgeLabel(item.key)} />
-                )}
-              </a>
-            );
-          })}
-          <div className="pt-4">
-            <p className="px-3 pb-1 text-[11px] font-semibold tracking-wider text-slate-400">今後追加予定</p>
-            {FUTURE_MODULES.map((m) => (
-              <p key={m} className="flex min-h-8 items-center gap-2 px-3 text-[13px] text-slate-400 dark:text-slate-500">
-                <span className="size-1.5 rounded-full bg-slate-300 dark:bg-slate-600" aria-hidden />
-                {m}
-                <span className="ml-auto text-[10px]">準備中</span>
-              </p>
-            ))}
-          </div>
+        <nav className={cx('flex-1 overflow-y-auto pb-3', collapsed ? 'px-2' : 'px-2.5')} aria-label="メインメニュー">
+          {(['業務', '管理'] as const).map((group) => (
+            <div key={group} className="pt-2 first:pt-0">
+              {collapsed ? (
+                <div className="mx-2 mb-1.5 mt-1 border-t border-slate-200 first:hidden dark:border-navy-800" aria-hidden />
+              ) : (
+                <p className="px-2.5 pb-1 pt-1 text-[11px] font-semibold text-slate-500 dark:text-slate-400">{group}</p>
+              )}
+              <div className="space-y-px">
+                {NAV_ITEMS.filter((item) => item.group === group).map((item) => {
+                  const on = item.key === active;
+                  const n = summary(item.key).count;
+                  return (
+                    <a
+                      key={item.key}
+                      href={item.href}
+                      aria-current={on ? 'page' : undefined}
+                      title={collapsed ? item.label : undefined}
+                      className={cx(
+                        'relative flex h-8 items-center gap-2.5 rounded-md text-[13px] transition-colors',
+                        collapsed ? 'justify-center px-0' : 'px-2.5',
+                        on ? 'bg-slate-200/80 font-semibold text-slate-900 dark:bg-navy-800 dark:text-slate-100' : 'text-slate-700 hover:bg-slate-200/50 dark:text-slate-300 dark:hover:bg-surface-hover',
+                      )}
+                    >
+                      <item.icon className={cx('size-4 shrink-0', on ? 'text-navy-600 dark:text-navy-500' : 'text-slate-500 dark:text-slate-600')} aria-hidden />
+                      <span className={collapsed ? 'sr-only' : 'min-w-0 flex-1 truncate'}>{item.label}</span>
+                      {item.key === 'notifications' ? (
+                        unreadCount > 0 && (
+                          <span
+                            className={cx(
+                              'rounded-full px-1.5 text-[11px] font-bold leading-[18px] text-slate-600 ring-1 ring-inset ring-slate-300 dark:text-slate-300 dark:ring-navy-700',
+                              collapsed && 'absolute -right-1 -top-1 bg-sidebar !px-1 !text-[10px] !leading-4',
+                            )}
+                            aria-label={`未読の通知 ${unreadCount}件`}
+                          >
+                            {unreadCount}
+                          </span>
+                        )
+                      ) : (
+                        <NavCountBadge count={n} worst={summary(item.key).worst} label={badgeLabel(item.key)} className={collapsed ? 'absolute -right-1 -top-1 !min-w-4 !px-1 !text-[10px] !leading-4' : '!leading-[18px]'} />
+                      )}
+                    </a>
+                  );
+                })}
+              </div>
+            </div>
+          ))}
+          {!collapsed && (
+            <div className="pt-3">
+              <p className="px-2.5 pb-1 text-[11px] font-semibold text-slate-500 dark:text-slate-400">今後追加予定</p>
+              {FUTURE_MODULES.map((m) => (
+                <p key={m} className="flex h-7 items-center gap-2 px-2.5 text-[12px] text-slate-500 dark:text-slate-400">
+                  {m}
+                  <span className="ml-auto text-[10px]">準備中</span>
+                </p>
+              ))}
+            </div>
+          )}
         </nav>
-        <div className="space-y-2 border-t border-slate-200 p-4 dark:border-navy-800">
-          <p className="text-xs font-semibold text-slate-700 dark:text-slate-200">{DEMO_COMPANY_NAME}（架空）</p>
-          <DemoNotice compact />
-          <ThemeButton className="-ml-3 w-full" />
+        <div className={cx('space-y-2 border-t border-slate-200 py-3 dark:border-navy-800', collapsed ? 'px-2' : 'px-4')}>
+          {!collapsed && (
+            <>
+              <p className="text-[12px] text-slate-600 dark:text-slate-300">{formatDateJa(today)}</p>
+              <p className="text-[11px] font-semibold text-slate-600 dark:text-slate-300">{DEMO_COMPANY_NAME}（架空）</p>
+              <DemoNotice compact />
+            </>
+          )}
+          <ThemeButton className={collapsed ? 'w-full justify-center !px-0' : '-ml-2.5 w-[calc(100%+1.25rem)]'} iconOnly={collapsed} />
         </div>
       </aside>
 
       {/* スマホ: ヘッダー */}
-      <header className="sticky top-0 z-30 border-b border-slate-200/80 bg-white/90 pt-safe backdrop-blur-md lg:hidden dark:border-navy-800 dark:bg-navy-900/90">
+      <header className="sticky top-0 z-30 border-b border-slate-200 bg-slate-50/90 pt-safe backdrop-blur-md lg:hidden dark:border-navy-800 dark:bg-navy-950/90">
         <div className="flex h-14 items-center justify-between px-4">
           <Logo />
           <div className="-mr-2 flex items-center">
@@ -197,7 +268,7 @@ export function Layout({ active, children }: { active: string; children: ReactNo
               <span className="sr-only">{`通知センター（未処理 ${notices.filter((x) => x.actionable).length}件・未読 ${unreadCount}件）`}</span>
               <Bell className="size-5" aria-hidden />
               {unreadCount > 0 && (
-                <span className="absolute right-1 top-1.5 min-w-4 rounded-full bg-navy-700 px-1 text-center text-[10px] font-bold leading-4 text-white dark:bg-navy-300 dark:text-navy-950" aria-hidden>
+                <span className="absolute right-1 top-1.5 min-w-4 rounded-full bg-navy-700 px-1 text-center text-[10px] font-bold leading-4 text-white dark:bg-navy-500 dark:text-navy-950" aria-hidden>
                   {unreadCount > 99 ? '99+' : unreadCount}
                 </span>
               )}
@@ -207,15 +278,14 @@ export function Layout({ active, children }: { active: string; children: ReactNo
         </div>
       </header>
 
-      <main id="main" tabIndex={-1} className="outline-none lg:pl-60">
-        <div className="mx-auto max-w-6xl px-4 pb-28 pt-5 sm:px-6 lg:px-8 lg:pb-12 lg:pt-8" data-swipe-surface>
-          <p className="mb-1 hidden text-xs text-slate-400 lg:block">{formatDateJa(today)}</p>
+      <main id="main" tabIndex={-1} className={cx('outline-none transition-[padding] duration-150', collapsed ? 'lg:pl-16' : 'lg:pl-60')}>
+        <div className="mx-auto max-w-6xl px-4 pb-28 pt-5 sm:px-6 lg:px-8 lg:pb-12 lg:pt-6" data-swipe-surface>
           {children}
         </div>
       </main>
 
       {/* スマホ: 下部ナビゲーション */}
-      <nav className="fixed inset-x-0 bottom-0 z-30 border-t border-slate-200 bg-white/95 pb-safe backdrop-blur-md lg:hidden dark:border-navy-800 dark:bg-navy-900/95" aria-label="メインメニュー">
+      <nav className="fixed inset-x-0 bottom-0 z-30 border-t border-slate-200 bg-sidebar/95 pb-safe backdrop-blur-md lg:hidden dark:border-navy-800" aria-label="メインメニュー">
         <div className="grid grid-cols-5">
           {BOTTOM_ITEMS.map((item) => {
             const on = item.key === active || (item.covers?.includes(active) ?? false);
@@ -225,11 +295,11 @@ export function Layout({ active, children }: { active: string; children: ReactNo
                 key={item.key}
                 href={item.href}
                 aria-current={on ? 'page' : undefined}
-                className={cx('relative flex min-h-16 flex-col items-center justify-center gap-1 text-[11px] font-medium transition-colors', on ? 'text-navy-800 dark:text-white' : 'text-slate-500 dark:text-slate-400')}
+                className={cx('relative flex min-h-16 flex-col items-center justify-center gap-1 text-[11px] font-medium transition-colors', on ? 'text-slate-900 dark:text-slate-100' : 'text-slate-500 dark:text-slate-400')}
               >
-                {on && <span className="absolute top-0 h-0.5 w-10 rounded-full bg-navy-700 dark:bg-navy-300" aria-hidden />}
+                {on && <span className="absolute top-0 h-0.5 w-10 rounded-full bg-navy-600 dark:bg-navy-500" aria-hidden />}
                 <span className="relative">
-                  <item.icon className="size-[22px]" strokeWidth={on ? 2.25 : 1.75} aria-hidden />
+                  <item.icon className={cx('size-[22px]', on && 'text-navy-600 dark:text-navy-500')} aria-hidden />
                   <NavCountBadge count={n} worst={summary(item.key).worst} label={badgeLabel(item.key)} className="absolute -right-3 -top-2 !text-[10px] !leading-4" />
                 </span>
                 {item.short}

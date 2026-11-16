@@ -56,7 +56,7 @@ export function NotificationsPage() {
             onClick={() => setF({ view: t.key })}
             className={cx(
               'flex min-h-14 flex-col items-center justify-center rounded-xl border text-sm font-semibold transition-colors',
-              view === t.key ? 'border-navy-700 bg-navy-700 text-white dark:border-navy-400 dark:bg-navy-500' : 'border-slate-200 bg-white text-slate-600 dark:border-navy-700 dark:bg-navy-900 dark:text-slate-300',
+              view === t.key ? 'border-navy-700 bg-navy-700 text-white dark:border-navy-400 dark:bg-navy-500 dark:text-navy-950' : 'border-slate-200 bg-white text-slate-600 dark:border-navy-700 dark:bg-navy-900 dark:text-slate-300',
             )}
             data-testid={`notices-tab-${t.key}`}
           >

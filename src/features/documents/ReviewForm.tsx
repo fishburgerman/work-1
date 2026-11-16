@@ -136,7 +136,7 @@ export function ReviewForm({ doc, readOnly }: { doc: DocumentRecord; readOnly: b
           {!ex && !v && <span className="text-[11px] text-slate-400">読み取れず（空欄）</span>}
         </div>
         {f.key === 'notes' || f.key === 'applicationContent' ? (
-          <textarea id={id} value={v} readOnly={readOnly} onChange={(e) => setField(f.key, e.target.value)} rows={2} className="block w-full rounded-lg border border-slate-300 bg-white px-3 py-2 dark:border-navy-700 dark:bg-navy-950" />
+          <textarea id={id} value={v} readOnly={readOnly} onChange={(e) => setField(f.key, e.target.value)} rows={2} className="block w-full rounded-lg border border-slate-300 bg-white px-3 py-2 dark:border-navy-700 dark:bg-navy-900" />
         ) : (
           <input
             id={id}
@@ -254,7 +254,7 @@ export function ReviewForm({ doc, readOnly }: { doc: DocumentRecord; readOnly: b
             {form.lines.map((l, i) => (
               <li key={l.id} className="rounded-xl border border-slate-200 p-3 dark:border-navy-700">
                 <div className="flex items-center gap-2">
-                  <input aria-label={`${i + 1}行目の品名`} value={l.name} readOnly={readOnly} onChange={(e) => setLine(i, { name: e.target.value })} className="h-11 min-w-0 flex-1 rounded-lg border border-slate-300 bg-white px-3 dark:border-navy-700 dark:bg-navy-950" />
+                  <input aria-label={`${i + 1}行目の品名`} value={l.name} readOnly={readOnly} onChange={(e) => setLine(i, { name: e.target.value })} className="h-11 lg:h-9 min-w-0 flex-1 rounded-lg border border-slate-300 bg-white px-3 dark:border-navy-700 dark:bg-navy-900" />
                   {!readOnly && (
                     <button type="button" aria-label={`${i + 1}行目を削除`} className="flex size-11 items-center justify-center rounded-lg text-slate-400" onClick={() => setForm((s) => ({ ...s, lines: s.lines.filter((_, j) => j !== i) }))}>
                       <Trash2 className="size-4" />
@@ -270,7 +270,7 @@ export function ReviewForm({ doc, readOnly }: { doc: DocumentRecord; readOnly: b
                         value={l[k] ?? ''}
                         readOnly={readOnly}
                         onChange={(e) => setLine(i, { [k]: numOrNull(e.target.value) })}
-                        className="mt-0.5 block h-11 w-full rounded-lg border border-slate-300 bg-white px-2 text-right tabular-nums dark:border-navy-700 dark:bg-navy-950"
+                        className="mt-0.5 block h-11 lg:h-9 w-full rounded-lg border border-slate-300 bg-white px-2 text-right tabular-nums dark:border-navy-700 dark:bg-navy-900"
                       />
                     </label>
                   ))}

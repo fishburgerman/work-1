@@ -243,7 +243,7 @@ export function TasksPage({ query }: { query: URLSearchParams }) {
               onChange={(e) => setF({ q: e.target.value })}
               placeholder="タスク名・メモ・担当者・タグで検索"
               aria-label="タスクを検索"
-              className="h-11 w-full rounded-lg border border-slate-300 bg-white pl-9 pr-3 shadow-sm focus:border-navy-500 focus:outline-none focus:ring-2 focus:ring-navy-500/25 dark:border-navy-700 dark:bg-navy-950"
+              className="h-11 lg:h-9 w-full rounded-lg border border-slate-300 bg-white pl-9 pr-3 focus:border-navy-500 focus:outline-none focus:ring-2 focus:ring-navy-500/25 dark:border-navy-700 dark:bg-navy-900"
             />
           </div>
           <div className="inline-flex rounded-lg bg-slate-100 p-1 dark:bg-navy-900" role="tablist" aria-label="表示方式">
@@ -316,7 +316,7 @@ export function TasksPage({ query }: { query: URLSearchParams }) {
               data-testid={`scope-${s.key}`}
             >
               {s.label}
-              <span className={cx('rounded-full px-1.5 text-[11px] tabular-nums', scope === s.key && !legacy ? 'bg-white/20' : 'bg-slate-100 dark:bg-navy-800')}>{counts[s.key]}</span>
+              <span className={cx('rounded-full px-1.5 text-[11px] tabular-nums', scope === s.key && !legacy ? 'bg-white/20 dark:bg-black/25' : 'bg-slate-100 dark:bg-navy-800')}>{counts[s.key]}</span>
             </button>
           ))}
         </div>

@@ -338,7 +338,7 @@ export function AssetDetailPage({ assetId }: { assetId: string }) {
           <div className="mt-4 rounded-xl border border-slate-200 p-3 dark:border-navy-800">
             <p className="mb-2 text-xs font-semibold text-slate-500">状態の変更（履歴に記録されます）</p>
             <div className="grid gap-2 sm:grid-cols-[12rem_1fr_auto]">
-              <select aria-label="変更後の状態" value={statusTo} onChange={(e) => setStatusTo(e.target.value)} className="h-11 rounded-lg border border-slate-300 bg-white px-3 dark:border-navy-700 dark:bg-navy-950">
+              <select aria-label="変更後の状態" value={statusTo} onChange={(e) => setStatusTo(e.target.value)} className="h-11 lg:h-9 rounded-lg border border-slate-300 bg-white px-3 dark:border-navy-700 dark:bg-navy-900">
                 <option value="">状態を選択</option>
                 {NEXT_STATUS[asset.status]!.map((s) => (
                   <option key={s} value={s}>
@@ -346,7 +346,7 @@ export function AssetDetailPage({ assetId }: { assetId: string }) {
                   </option>
                 ))}
               </select>
-              <input aria-label="変更理由" value={note} onChange={(e) => setNote(e.target.value)} placeholder="理由（例：画面割れのため修理へ）" className="h-11 rounded-lg border border-slate-300 bg-white px-3 dark:border-navy-700 dark:bg-navy-950" />
+              <input aria-label="変更理由" value={note} onChange={(e) => setNote(e.target.value)} placeholder="理由（例：画面割れのため修理へ）" className="h-11 lg:h-9 rounded-lg border border-slate-300 bg-white px-3 dark:border-navy-700 dark:bg-navy-900" />
               <Button
                 variant="secondary"
                 disabled={!statusTo}
@@ -653,7 +653,7 @@ export function StocktakePage() {
                   aria-label={`${r.item.name}（${locName(r.locationId)}）の実数`}
                   value={v}
                   onChange={(e) => setCounts({ ...counts, [r.key]: Math.max(0, Math.floor(Number(e.target.value))) })}
-                  className="h-11 w-20 rounded-lg border border-slate-300 bg-white text-center text-lg font-bold tabular-nums dark:border-navy-700 dark:bg-navy-950"
+                  className="h-11 lg:h-9 w-20 rounded-lg border border-slate-300 bg-white text-center text-lg font-bold tabular-nums dark:border-navy-700 dark:bg-navy-900"
                 />
               </li>
             );

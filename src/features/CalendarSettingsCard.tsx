@@ -62,7 +62,7 @@ export function CalendarSettingsCard() {
           <div className="flex flex-wrap items-end gap-2">
             <label className="text-xs">
               <span className="sr-only">追加する休業日</span>
-              <input type="date" value={newDate} onChange={(e) => setNewDate(e.target.value)} className="h-11 rounded-lg border border-slate-300 bg-white px-2 dark:border-navy-700 dark:bg-navy-950" aria-label="追加する休業日" data-testid="company-holiday-input" />
+              <input type="date" value={newDate} onChange={(e) => setNewDate(e.target.value)} className="h-11 lg:h-9 rounded-lg border border-slate-300 bg-white px-2 dark:border-navy-700 dark:bg-navy-900" aria-label="追加する休業日" data-testid="company-holiday-input" />
             </label>
             <Button
               variant="secondary"

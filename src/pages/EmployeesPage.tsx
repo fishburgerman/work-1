@@ -76,7 +76,7 @@ export function EmployeesPage() {
               onChange={(e) => setKeyword(e.target.value)}
               placeholder="氏名・社員番号・役職などで検索"
               aria-label="キーワード検索"
-              className="h-11 w-full rounded-lg border border-slate-300 bg-white pl-9 pr-3 shadow-sm focus:border-navy-500 focus:outline-none focus:ring-2 focus:ring-navy-500/25 dark:border-navy-700 dark:bg-navy-950"
+              className="h-11 lg:h-9 w-full rounded-lg border border-slate-300 bg-white pl-9 pr-3 focus:border-navy-500 focus:outline-none focus:ring-2 focus:ring-navy-500/25 dark:border-navy-700 dark:bg-navy-900"
             />
           </div>
           <div className="grid grid-cols-2 gap-2 sm:contents">

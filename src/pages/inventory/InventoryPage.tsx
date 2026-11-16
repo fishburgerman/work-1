@@ -103,7 +103,7 @@ function SearchBox({ value, onChange, placeholder, label }: { value: string; onC
         onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder}
         aria-label={label}
-        className="h-11 w-full rounded-lg border border-slate-300 bg-white pl-9 pr-3 shadow-sm focus:border-navy-500 focus:outline-none focus:ring-2 focus:ring-navy-500/25 dark:border-navy-700 dark:bg-navy-950"
+        className="h-11 lg:h-9 w-full rounded-lg border border-slate-300 bg-white pl-9 pr-3 focus:border-navy-500 focus:outline-none focus:ring-2 focus:ring-navy-500/25 dark:border-navy-700 dark:bg-navy-900"
       />
     </div>
   );
@@ -384,7 +384,7 @@ function OrdersTab({ f, setF }: TabProps) {
               <div className="mt-3 flex flex-col gap-2 sm:flex-row sm:items-end">
                 <label className="flex-1 text-xs text-slate-500">
                   依頼者
-                  <input value={requestedBy} onChange={(e) => setRequestedBy(e.target.value)} className="mt-0.5 block h-11 w-full rounded-lg border border-slate-300 bg-white px-3 text-slate-800 dark:border-navy-700 dark:bg-navy-950 dark:text-slate-100" />
+                  <input value={requestedBy} onChange={(e) => setRequestedBy(e.target.value)} className="mt-0.5 block h-11 lg:h-9 w-full rounded-lg border border-slate-300 bg-white px-3 text-slate-800 dark:border-navy-700 dark:bg-navy-900 dark:text-slate-100" />
                 </label>
                 <Button icon={FilePlus2} onClick={createOrders} loading={busy} disabled={selected.size === 0} data-testid="create-orders">
                   選択した{[...selected].filter((id) => open.some((o) => o.id === id)).length}件で発注書（下書き）を作成

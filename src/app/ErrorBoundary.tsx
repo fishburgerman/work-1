@@ -46,7 +46,7 @@ export class ErrorBoundary extends Component<Props, State> {
               : '表示の途中で問題が発生しました。保存済みのデータはこの端末に残っています（この表示の失敗でデータは消えません）。'}
           </p>
           <div className="mt-4 flex flex-wrap gap-2">
-            <button type="button" className="min-h-11 rounded-lg bg-navy-800 px-4 text-sm font-semibold text-white dark:bg-navy-500" onClick={() => window.location.reload()}>
+            <button type="button" className="min-h-11 rounded-lg bg-navy-800 px-4 text-sm font-semibold text-white dark:bg-navy-500 dark:text-navy-950" onClick={() => window.location.reload()}>
               再読み込み
             </button>
             {this.props.scope === 'page' && !chunk && (

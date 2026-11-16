@@ -134,7 +134,7 @@ export function InventoryHandoffCard({ doc }: { doc: DocumentRecord }) {
                         inputMode="numeric"
                         value={r.quantity || ''}
                         onChange={(e) => setRows((x) => x.map((y, j) => (j === i ? { ...y, quantity: Math.max(0, Math.floor(Number(e.target.value.replace(/\D/g, '')) || 0)) } : y)))}
-                        className="mt-1.5 block h-11 w-full rounded-lg border border-slate-300 bg-white px-2 text-right tabular-nums dark:border-navy-700 dark:bg-navy-950"
+                        className="mt-1.5 block h-11 lg:h-9 w-full rounded-lg border border-slate-300 bg-white px-2 text-right tabular-nums dark:border-navy-700 dark:bg-navy-900"
                         aria-label={`${r.name}の数量`}
                       />
                     </label>

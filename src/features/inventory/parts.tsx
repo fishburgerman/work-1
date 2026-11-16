@@ -63,7 +63,7 @@ export function Stepper({ value, onChange, min = 1, max, label }: { value: numbe
         min={min}
         max={max}
         onChange={(e) => onChange(Math.floor(Number(e.target.value)))}
-        className="h-14 w-24 rounded-2xl border border-slate-300 bg-white text-center text-2xl font-bold tabular-nums dark:border-navy-700 dark:bg-navy-950"
+        className="h-14 w-24 rounded-2xl border border-slate-300 bg-white text-center text-2xl font-bold tabular-nums dark:border-navy-700 dark:bg-navy-900"
       />
       <button type="button" aria-label="1増やす" onClick={() => onChange(clamp(value + 1))} disabled={max !== undefined && value >= max} className="flex size-14 items-center justify-center rounded-2xl border border-slate-300 text-slate-700 active:bg-slate-100 disabled:opacity-30 dark:border-navy-700 dark:text-slate-200">
         <Plus className="size-6" aria-hidden />

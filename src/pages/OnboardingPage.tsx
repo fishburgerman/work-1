@@ -294,7 +294,7 @@ function GeneratePanel({ employeeId }: { employeeId: string }) {
                               <input
                                 value={o?.assignee ?? item.assignee}
                                 onChange={(e) => override(item.key, { assignee: e.target.value })}
-                                className="mt-0.5 block h-10 w-full rounded-lg border border-slate-300 bg-white px-2.5 text-slate-800 dark:border-navy-700 dark:bg-navy-950 dark:text-slate-100"
+                                className="mt-0.5 block h-10 w-full rounded-lg border border-slate-300 bg-white px-2.5 text-slate-800 dark:border-navy-700 dark:bg-navy-900 dark:text-slate-100"
                                 maxLength={50}
                               />
                             </label>
@@ -304,7 +304,7 @@ function GeneratePanel({ employeeId }: { employeeId: string }) {
                                 type="date"
                                 value={o?.dueDate ?? item.dueDate}
                                 onChange={(e) => override(item.key, { dueDate: e.target.value })}
-                                className="mt-0.5 block h-10 w-full rounded-lg border border-slate-300 bg-white px-2 text-slate-800 dark:border-navy-700 dark:bg-navy-950 dark:text-slate-100"
+                                className="mt-0.5 block h-10 w-full rounded-lg border border-slate-300 bg-white px-2 text-slate-800 dark:border-navy-700 dark:bg-navy-900 dark:text-slate-100"
                               />
                             </label>
                             <label className="text-[11px] text-slate-500">
@@ -312,7 +312,7 @@ function GeneratePanel({ employeeId }: { employeeId: string }) {
                               <select
                                 value={o?.priority ?? item.priority}
                                 onChange={(e) => override(item.key, { priority: e.target.value as Priority })}
-                                className="mt-0.5 block h-10 w-full rounded-lg border border-slate-300 bg-white px-2 text-slate-800 dark:border-navy-700 dark:bg-navy-950 dark:text-slate-100"
+                                className="mt-0.5 block h-10 w-full rounded-lg border border-slate-300 bg-white px-2 text-slate-800 dark:border-navy-700 dark:bg-navy-900 dark:text-slate-100"
                               >
                                 {PRIORITIES.map((p) => (
                                   <option key={p} value={p}>

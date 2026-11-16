@@ -73,7 +73,7 @@ export function DocumentsPage() {
         title="書類管理"
         description={`確認待ち ${counts.needs_review}件・確認済み ${counts.confirmed}件。請求書・領収書・納品書などを取り込み、読み取った内容を確認して保存します`}
         actions={
-          <a href="#/documents/new" className="inline-flex min-h-11 items-center gap-2 rounded-lg bg-navy-800 px-4 text-sm font-semibold text-white shadow-sm dark:bg-navy-500" data-testid="new-document">
+          <a href="#/documents/new" className="inline-flex min-h-11 items-center gap-2 rounded-lg bg-navy-800 px-4 text-sm font-semibold text-white shadow-sm dark:bg-navy-500 dark:text-navy-950" data-testid="new-document">
             <FilePlus2 className="size-4" aria-hidden />
             取り込む
           </a>
@@ -94,7 +94,7 @@ export function DocumentsPage() {
             )}
           >
             {t.label}
-            <span className={cx('rounded-full px-1.5 text-[11px] tabular-nums', tab === t.key ? 'bg-white/20' : 'bg-slate-100 dark:bg-navy-800')}>{counts[t.key]}</span>
+            <span className={cx('rounded-full px-1.5 text-[11px] tabular-nums', tab === t.key ? 'bg-white/20 dark:bg-black/25' : 'bg-slate-100 dark:bg-navy-800')}>{counts[t.key]}</span>
           </button>
         ))}
       </div>
@@ -108,7 +108,7 @@ export function DocumentsPage() {
               onChange={(e) => setF({ q: e.target.value })}
               placeholder="発行元・書類番号・品名・本文で検索"
               aria-label="書類を検索"
-              className="h-11 w-full rounded-lg border border-slate-300 bg-white pl-9 pr-3 shadow-sm dark:border-navy-700 dark:bg-navy-950"
+              className="h-11 lg:h-9 w-full rounded-lg border border-slate-300 bg-white pl-9 pr-3 dark:border-navy-700 dark:bg-navy-900"
             />
           </div>
           <FilterDisclosure activeCount={f.type ? 1 : 0} className="col-span-2 md:col-span-1">

@@ -166,11 +166,17 @@ test('[Phase1] ナビゲーション・テーマ切替・入力エラー表示',
   await expect(page.getByRole('heading', { name: '全社共通' })).toBeVisible();
 
   // テーマ切替
+  // 既定はダーク。ダーク → 端末設定 → ライト → ダーク と切り替わり、ライトとダークの両方の表示になる
   const theme = page.getByRole('button', { name: /表示テーマ/ }).filter({ visible: true });
-  await theme.click();
-  const isDark = await page.evaluate(() => document.documentElement.classList.contains('dark'));
-  await theme.click();
-  expect(await page.evaluate(() => document.documentElement.classList.contains('dark'))).not.toBe(isDark);
+  await expect(theme).toHaveAccessibleName(/ダーク/);
+  expect(await page.evaluate(() => document.documentElement.classList.contains('dark'))).toBe(true);
+  const seen = new Set<boolean>();
+  for (let i = 0; i < 3; i++) {
+    await theme.click();
+    seen.add(await page.evaluate(() => document.documentElement.classList.contains('dark')));
+  }
+  expect([...seen].sort()).toEqual([false, true]);
+  await expect(theme).toHaveAccessibleName(/ダーク/);
 
   // 必須項目未入力で登録 → フィールドエラー
   if (isMobile) {

@@ -332,7 +332,7 @@ export function TaskFormModal({
                   }
                 }}
                 placeholder="項目を追加（Enter）"
-                className="h-10 min-w-0 flex-1 rounded-lg border border-slate-300 bg-white px-3 text-sm dark:border-navy-700 dark:bg-navy-950"
+                className="h-10 min-w-0 flex-1 rounded-lg border border-slate-300 bg-white px-3 text-sm dark:border-navy-700 dark:bg-navy-900"
                 aria-label="チェック項目を追加"
                 maxLength={100}
                 data-testid="checklist-input"
@@ -370,7 +370,7 @@ export function TaskFormModal({
                     }
                   }}
                   placeholder="サブタスクを追加（Enter）"
-                  className="h-10 min-w-0 flex-1 rounded-lg border border-slate-300 bg-white px-3 text-sm dark:border-navy-700 dark:bg-navy-950"
+                  className="h-10 min-w-0 flex-1 rounded-lg border border-slate-300 bg-white px-3 text-sm dark:border-navy-700 dark:bg-navy-900"
                   aria-label="サブタスクを追加"
                   maxLength={100}
                   data-testid="subtask-input"

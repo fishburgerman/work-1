@@ -9,11 +9,12 @@ export function cx(...classes: (string | false | null | undefined)[]): string {
 
 type Variant = 'primary' | 'secondary' | 'ghost' | 'danger';
 const VARIANT: Record<Variant, string> = {
-  primary: 'bg-navy-800 text-white hover:bg-navy-700 active:bg-navy-900 dark:bg-navy-500 dark:hover:bg-navy-400 shadow-sm',
+  // 主要な操作だけアクセント (ダークはセージの地に暗い文字でコントラストを確保)。影・発光は使わない
+  primary: 'bg-navy-800 text-white hover:bg-navy-700 active:bg-navy-900 dark:bg-navy-500 dark:text-navy-950 dark:hover:bg-navy-400 dark:active:bg-navy-500',
   secondary:
-    'bg-white text-slate-700 border border-slate-300 hover:bg-slate-50 active:bg-slate-100 dark:bg-navy-900 dark:text-slate-100 dark:border-navy-700 dark:hover:bg-navy-800',
-  ghost: 'text-slate-600 hover:bg-slate-100 active:bg-slate-200 dark:text-slate-300 dark:hover:bg-navy-800',
-  danger: 'bg-red-600 text-white hover:bg-red-500 active:bg-red-700 shadow-sm',
+    'bg-white text-slate-700 border border-slate-300 hover:bg-slate-50 active:bg-slate-100 dark:bg-navy-900 dark:text-slate-100 dark:border-navy-700 dark:hover:bg-surface-hover dark:active:bg-navy-800',
+  ghost: 'text-slate-600 hover:bg-slate-100 active:bg-slate-200 dark:text-slate-300 dark:hover:bg-surface-hover dark:active:bg-navy-800',
+  danger: 'bg-red-600 text-white hover:bg-red-500 active:bg-red-700 dark:bg-red-400 dark:text-navy-950 dark:hover:bg-red-300',
 };
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -34,8 +35,9 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
       type={type}
       disabled={disabled || loading}
       className={cx(
-        'inline-flex select-none items-center justify-center gap-2 rounded-lg font-semibold transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy-500 disabled:cursor-not-allowed disabled:opacity-50',
-        size === 'md' ? 'min-h-11 px-4 text-sm' : 'min-h-9 px-3 text-[13px]',
+        'inline-flex select-none items-center justify-center gap-1.5 rounded-lg font-semibold transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy-500 disabled:cursor-not-allowed disabled:opacity-50',
+        // PC ではデスクトップアプリの密度に (スマホはタップしやすい 44px を維持)
+        size === 'md' ? 'min-h-11 px-4 text-sm lg:min-h-9 lg:px-3.5 lg:text-[13px]' : 'min-h-9 px-3 text-[13px] lg:min-h-8 lg:px-2.5',
         VARIANT[variant],
         block && 'w-full',
         className,
@@ -59,12 +61,12 @@ export function IconButton({ icon: Icon, label, className, ...rest }: ButtonHTML
       aria-label={label}
       title={label}
       className={cx(
-        'inline-flex size-11 shrink-0 items-center justify-center rounded-lg text-slate-500 transition-colors hover:bg-slate-100 hover:text-slate-800 active:bg-slate-200 dark:text-slate-400 dark:hover:bg-navy-800 dark:hover:text-slate-100',
+        'inline-flex size-11 shrink-0 items-center justify-center rounded-lg text-slate-500 transition-colors hover:bg-slate-100 hover:text-slate-800 active:bg-slate-200 lg:size-9 dark:text-slate-400 dark:hover:bg-surface-hover dark:hover:text-slate-100',
         className,
       )}
       {...rest}
     >
-      <Icon className="size-5" aria-hidden />
+      <Icon className="size-[18px]" aria-hidden />
     </button>
   );
 }
@@ -78,7 +80,7 @@ export function Card({
   ...rest
 }: { className?: string; children: ReactNode; as?: 'section' | 'div' | 'article' } & Omit<HTMLAttributes<HTMLElement>, 'className' | 'children'>) {
   return (
-    <Tag className={cx('min-w-0 rounded-2xl border border-slate-200/80 bg-white shadow-[0_1px_2px_rgba(15,31,61,0.04)] dark:border-navy-800 dark:bg-navy-900', className)} {...rest}>
+    <Tag className={cx('min-w-0 rounded-2xl border border-slate-200 bg-white dark:border-navy-800 dark:bg-navy-900', className)} {...rest}>
       {children}
     </Tag>
   );
@@ -88,8 +90,8 @@ export function CardHeader({ title, icon: Icon, action, description }: { title: 
   return (
     <div className="flex items-start justify-between gap-3 px-4 pt-4 sm:px-5 sm:pt-5">
       <div className="min-w-0">
-        <h2 className="flex items-center gap-2 text-[15px] font-bold text-slate-800 dark:text-slate-100">
-          {Icon && <Icon className="size-4 text-navy-500 dark:text-navy-300" aria-hidden />}
+        <h2 className="flex items-center gap-2 text-[14px] font-bold text-slate-800 dark:text-slate-100">
+          {Icon && <Icon className="size-4 text-slate-400 dark:text-slate-600" aria-hidden />}
           {title}
         </h2>
         {description && <p className="mt-0.5 text-xs text-slate-500 dark:text-slate-400">{description}</p>}
@@ -124,10 +126,12 @@ export function Badge({ tone = 'gray', children, icon: Icon, className }: { tone
 // ---------- Form fields ----------
 
 /** 入力欄の共通スタイル (スマート入力の部品でも同じ見た目にする) */
-export const inputClass = (error?: boolean, extra?: string) => cx(fieldBase, 'h-11', error ? fieldErr : fieldOk, extra);
+export const inputClass = (error?: boolean, extra?: string) => cx(fieldBase, FIELD_H, error ? fieldErr : fieldOk, extra);
 
+/** 入力欄の高さ (スマホ 44px・PC 36px)。すべての入力欄・選択欄で揃える */
+const FIELD_H = 'h-11 lg:h-9';
 const fieldBase =
-  'block w-full rounded-lg border bg-white px-3 text-slate-900 shadow-sm transition-colors placeholder:text-slate-400 focus:outline-none focus:ring-2 dark:bg-navy-950 dark:text-slate-100';
+  'block w-full rounded-lg border bg-white px-3 text-slate-900 transition-colors placeholder:text-slate-400 focus:outline-none focus:ring-[3px] dark:bg-navy-900 dark:text-slate-100 dark:placeholder:text-slate-600';
 const fieldOk = 'border-slate-300 focus:border-navy-500 focus:ring-navy-500/25 dark:border-navy-700';
 const fieldErr = 'border-red-400 focus:border-red-500 focus:ring-red-500/25 dark:border-red-700';
 
@@ -171,7 +175,7 @@ export function TextField({ label, error, hint, required, wrapClassName, classNa
           aria-invalid={!!error}
           aria-describedby={desc}
           required={required}
-          className={cx(fieldBase, 'h-11', error ? fieldErr : fieldOk, className)}
+          className={cx(fieldBase, FIELD_H, error ? fieldErr : fieldOk, className)}
           {...rest}
         />
       )}
@@ -192,7 +196,7 @@ export function SelectField({ label, error, hint, required, options, placeholder
   return (
     <FieldWrap label={label} required={required} error={error} hint={hint} className={wrapClassName}>
       {(id, desc) => (
-        <select id={id} aria-invalid={!!error} aria-describedby={desc} required={required} className={cx(fieldBase, 'h-11 pr-8', error ? fieldErr : fieldOk, className)} {...rest}>
+        <select id={id} aria-invalid={!!error} aria-describedby={desc} required={required} className={cx(fieldBase, FIELD_H, 'pr-8', error ? fieldErr : fieldOk, className)} {...rest}>
           {placeholder !== undefined && <option value="">{placeholder}</option>}
           {options.map((o) => (
             <option key={o.value} value={o.value}>
@@ -211,7 +215,7 @@ export function TextAreaField({ label, error, hint, required, wrapClassName, cla
   return (
     <FieldWrap label={label} required={required} error={error} hint={hint} className={wrapClassName}>
       {(id, desc) => (
-        <textarea id={id} aria-invalid={!!error} aria-describedby={desc} rows={3} className={cx(fieldBase, 'py-2.5', error ? fieldErr : fieldOk, className)} {...rest} />
+        <textarea id={id} aria-invalid={!!error} aria-describedby={desc} rows={3} className={cx(fieldBase, 'py-2', error ? fieldErr : fieldOk, className)} {...rest} />
       )}
     </FieldWrap>
   );
@@ -236,7 +240,7 @@ export function FilterSelect({
       aria-label={label}
       value={value}
       onChange={(e) => onChange(e.target.value)}
-      className={cx(fieldBase, fieldOk, 'h-11 min-w-0 pr-8 text-sm', className)}
+      className={cx(fieldBase, fieldOk, FIELD_H, 'min-w-0 pr-8 text-sm', className)}
     >
       {options.map((o) => (
         <option key={o.value} value={o.value}>
@@ -262,12 +266,19 @@ export function EmptyState({ icon: Icon, title, description, action }: { icon: L
   );
 }
 
+/**
+ * 画面の見出し。PC では画面の上部に固定するツールバー (見出し・説明・主要な操作) になり、
+ * 一覧をスクロールしても新規作成などの操作に届く。スマホは上部のヘッダーが固定のため、通常の見出し
+ */
 export function PageHeader({ title, description, actions }: { title: string; description?: string; actions?: ReactNode }) {
   return (
-    <div className="mb-5 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+    <div
+      className="mb-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between lg:sticky lg:top-0 lg:z-20 lg:-mx-8 lg:-mt-6 lg:mb-6 lg:min-h-14 lg:border-b lg:border-slate-200 lg:bg-slate-50/95 lg:px-8 lg:py-2.5 lg:backdrop-blur-sm dark:lg:border-navy-800 dark:lg:bg-navy-950/95"
+      data-testid="page-toolbar"
+    >
       <div className="min-w-0">
-        <h1 className="text-xl font-bold tracking-tight text-slate-900 sm:text-2xl dark:text-white">{title}</h1>
-        {description && <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">{description}</p>}
+        <h1 className="text-xl font-bold text-slate-900 lg:text-[17px] dark:text-white">{title}</h1>
+        {description && <p className="mt-0.5 text-sm text-slate-500 lg:text-xs dark:text-slate-400">{description}</p>}
       </div>
       {actions && <div className="flex shrink-0 flex-wrap gap-2">{actions}</div>}
     </div>
@@ -287,11 +298,11 @@ export function FilterDisclosure({ activeCount, children, className }: { activeC
         type="button"
         onClick={() => setOpen((v) => !v)}
         aria-expanded={open}
-        className="inline-flex min-h-11 items-center justify-center gap-1.5 rounded-lg border border-slate-300 bg-white px-3 text-sm font-semibold text-slate-600 md:hidden dark:border-navy-700 dark:bg-navy-950 dark:text-slate-300"
+        className="inline-flex min-h-11 items-center justify-center gap-1.5 rounded-lg border border-slate-300 bg-white px-3 text-sm font-semibold text-slate-600 md:hidden dark:border-navy-700 dark:bg-navy-900 dark:text-slate-300"
       >
         <SlidersHorizontal className="size-4" aria-hidden />
         絞り込み
-        {activeCount > 0 && <span className="rounded-full bg-navy-700 px-1.5 text-[11px] text-white">{activeCount}</span>}
+        {activeCount > 0 && <span className="rounded-full bg-navy-700 px-1.5 text-[11px] text-white dark:bg-navy-500 dark:text-navy-950">{activeCount}</span>}
       </button>
       <div className={cx(open ? 'grid' : 'hidden', 'grid-cols-2 gap-2 md:contents', className)}>{children}</div>
     </>

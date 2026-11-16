@@ -92,7 +92,7 @@ export function AutomationPage({ query }: { query: URLSearchParams }) {
                         aria-checked={st.mode === m}
                         disabled={!st.enabled}
                         onClick={() => save(true, m)}
-                        className={`min-h-10 rounded-full border px-3 text-xs font-semibold disabled:opacity-40 ${st.mode === m ? 'border-navy-700 bg-navy-700 text-white dark:border-navy-400 dark:bg-navy-500' : 'border-slate-300 bg-white text-slate-600 dark:border-navy-700 dark:bg-navy-900 dark:text-slate-300'}`}
+                        className={`min-h-10 rounded-full border px-3 text-xs font-semibold disabled:opacity-40 ${st.mode === m ? 'border-navy-700 bg-navy-700 text-white dark:border-navy-400 dark:bg-navy-500 dark:text-navy-950' : 'border-slate-300 bg-white text-slate-600 dark:border-navy-700 dark:bg-navy-900 dark:text-slate-300'}`}
                         data-testid={`mode-${d.id}-${m}`}
                       >
                         {label}

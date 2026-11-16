@@ -218,7 +218,7 @@ export function InquiryDetailPage({ inquiryId, query }: { inquiryId: string; que
                 className={cx(
                   'min-h-11 rounded-lg border text-sm font-semibold transition-colors',
                   inquiry.status === s
-                    ? 'border-navy-700 bg-navy-700 text-white dark:border-navy-400 dark:bg-navy-500'
+                    ? 'border-navy-700 bg-navy-700 text-white dark:border-navy-400 dark:bg-navy-500 dark:text-navy-950'
                     : 'border-slate-200 text-slate-600 hover:bg-slate-50 dark:border-navy-700 dark:text-slate-300 dark:hover:bg-navy-800',
                 )}
               >
@@ -594,7 +594,7 @@ function TaskProposalModal({ open, onClose, inquiry }: { open: boolean; onClose:
                             onChange={(e) => ov(p.ruleId, { assignee: e.target.value })}
                             placeholder="未定"
                             maxLength={50}
-                            className="mt-0.5 block h-10 w-full rounded-lg border border-slate-300 bg-white px-2.5 text-slate-800 dark:border-navy-700 dark:bg-navy-950 dark:text-slate-100"
+                            className="mt-0.5 block h-10 w-full rounded-lg border border-slate-300 bg-white px-2.5 text-slate-800 dark:border-navy-700 dark:bg-navy-900 dark:text-slate-100"
                           />
                         </label>
                         <label className="text-[11px] text-slate-500">
@@ -603,7 +603,7 @@ function TaskProposalModal({ open, onClose, inquiry }: { open: boolean; onClose:
                             type="date"
                             value={o?.dueDate ?? p.dueDate}
                             onChange={(e) => ov(p.ruleId, { dueDate: e.target.value })}
-                            className="mt-0.5 block h-10 w-full rounded-lg border border-slate-300 bg-white px-2 text-slate-800 dark:border-navy-700 dark:bg-navy-950 dark:text-slate-100"
+                            className="mt-0.5 block h-10 w-full rounded-lg border border-slate-300 bg-white px-2 text-slate-800 dark:border-navy-700 dark:bg-navy-900 dark:text-slate-100"
                           />
                         </label>
                         <label className="text-[11px] text-slate-500">
@@ -611,7 +611,7 @@ function TaskProposalModal({ open, onClose, inquiry }: { open: boolean; onClose:
                           <select
                             value={o?.priority ?? p.priority}
                             onChange={(e) => ov(p.ruleId, { priority: e.target.value as Priority })}
-                            className="mt-0.5 block h-10 w-full rounded-lg border border-slate-300 bg-white px-2 text-slate-800 dark:border-navy-700 dark:bg-navy-950 dark:text-slate-100"
+                            className="mt-0.5 block h-10 w-full rounded-lg border border-slate-300 bg-white px-2 text-slate-800 dark:border-navy-700 dark:bg-navy-900 dark:text-slate-100"
                           >
                             {PRIORITIES.map((x) => (
                               <option key={x} value={x}>

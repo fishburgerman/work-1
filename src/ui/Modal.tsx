@@ -116,20 +116,21 @@ export function Modal({ open, onClose, title, description, children, footer, siz
   return createPortal(
     <ModalCloseContext.Provider value={requestClose}>
       <div className="fixed inset-0 z-50 flex items-end justify-center sm:items-center sm:p-6">
-        <div className="absolute inset-0 animate-fade-in bg-navy-950/50 backdrop-blur-[2px]" onClick={requestClose} aria-hidden data-testid="modal-backdrop" />
+        {/* 背景は暗くするだけ (ぼかしは使わない) */}
+        <div className="absolute inset-0 animate-fade-in bg-black/35 dark:bg-black/55" onClick={requestClose} aria-hidden data-testid="modal-backdrop" />
         <div
           ref={panelRef}
           role="dialog"
           aria-modal="true"
           aria-labelledby={titleId}
           tabIndex={-1}
-          className={`relative flex max-h-[92dvh] w-full animate-slide-up flex-col rounded-t-2xl bg-white shadow-2xl outline-none sm:rounded-2xl dark:bg-navy-900 ${
+          className={`relative flex max-h-[92dvh] w-full animate-slide-up flex-col rounded-t-2xl border border-slate-200 bg-white shadow-2xl outline-none sm:rounded-2xl dark:border-navy-800 dark:bg-navy-900 ${
             size === 'lg' ? 'sm:max-w-3xl' : 'sm:max-w-lg'
           }`}
         >
-          <div className="flex items-start gap-3 border-b border-slate-200 px-5 py-3.5 dark:border-navy-800">
-            <div className="min-w-0 flex-1 pt-1.5">
-              <h2 id={titleId} className="text-base font-bold text-slate-900 dark:text-white">
+          <div className="flex items-start gap-3 border-b border-slate-200 px-5 py-3 dark:border-navy-800">
+            <div className="min-w-0 flex-1 pt-1.5 lg:pt-1">
+              <h2 id={titleId} className="text-[15px] font-bold text-slate-900 dark:text-white">
                 {title}
               </h2>
               {description && <p className="mt-0.5 text-xs text-slate-500 dark:text-slate-400">{description}</p>}

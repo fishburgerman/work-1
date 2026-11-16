@@ -117,7 +117,7 @@ export function CalendarView({ tasks, month, day, onMonth, onDay, onOpen }: { ta
                 </ul>
                 <label className="flex items-center justify-end gap-2 px-4 pb-2 text-xs text-slate-500 sm:px-5">
                   期限を変更
-                  <input type="date" value={t.dueDate ?? ''} onChange={(e) => moveDue(t, e.target.value)} className="h-10 rounded-lg border border-slate-300 bg-white px-2 text-sm dark:border-navy-700 dark:bg-navy-950" aria-label={`「${t.title}」の期限`} data-testid="calendar-move-due" />
+                  <input type="date" value={t.dueDate ?? ''} onChange={(e) => moveDue(t, e.target.value)} className="h-10 rounded-lg border border-slate-300 bg-white px-2 text-sm dark:border-navy-700 dark:bg-navy-900" aria-label={`「${t.title}」の期限`} data-testid="calendar-move-due" />
                 </label>
               </div>
             ))}
@@ -146,7 +146,7 @@ export function CalendarView({ tasks, month, day, onMonth, onDay, onOpen }: { ta
                 </ul>
                 <label className="flex items-center justify-end gap-2 px-4 pb-2 text-xs text-slate-500 sm:px-5">
                   期限を設定
-                  <input type="date" value="" onChange={(e) => moveDue(t, e.target.value)} className="h-10 rounded-lg border border-slate-300 bg-white px-2 text-sm dark:border-navy-700 dark:bg-navy-950" aria-label={`「${t.title}」の期限`} />
+                  <input type="date" value="" onChange={(e) => moveDue(t, e.target.value)} className="h-10 rounded-lg border border-slate-300 bg-white px-2 text-sm dark:border-navy-700 dark:bg-navy-900" aria-label={`「${t.title}」の期限`} />
                 </label>
               </div>
             ))}

@@ -159,7 +159,7 @@ export function QuantitySheet({ item, mode, onClose }: { item: Item | null; mode
             <legend className="mb-1.5 text-[13px] font-semibold text-slate-700 dark:text-slate-200">理由{mode === 'adjust' && <span className="text-red-500">*</span>}</legend>
             <div className="flex flex-wrap gap-2">
               {(mode === 'issue' ? ISSUE_REASONS : ADJUST_REASONS).map((r) => (
-                <button key={r} type="button" onClick={() => setReason(r)} aria-pressed={reason === r} className={cx('min-h-10 rounded-full border px-3 text-[13px]', reason === r ? 'border-navy-700 bg-navy-700 text-white dark:border-navy-400 dark:bg-navy-500' : 'border-slate-300 text-slate-600 dark:border-navy-700 dark:text-slate-300')}>
+                <button key={r} type="button" onClick={() => setReason(r)} aria-pressed={reason === r} className={cx('min-h-10 rounded-full border px-3 text-[13px]', reason === r ? 'border-navy-700 bg-navy-700 text-white dark:border-navy-400 dark:bg-navy-500 dark:text-navy-950' : 'border-slate-300 text-slate-600 dark:border-navy-700 dark:text-slate-300')}>
                   {r}
                 </button>
               ))}
@@ -236,7 +236,7 @@ export function AssignSheet({ asset, onClose }: { asset: Asset | null; onClose: 
       <label htmlFor="assign-emp" className="mb-1.5 block text-[13px] font-semibold">
         利用者
       </label>
-      <select id="assign-emp" value={employeeId} onChange={(e) => setEmployeeId(e.target.value)} disabled={asset.status === 'reserved'} className="block h-11 w-full rounded-lg border border-slate-300 bg-white px-3 dark:border-navy-700 dark:bg-navy-950">
+      <select id="assign-emp" value={employeeId} onChange={(e) => setEmployeeId(e.target.value)} disabled={asset.status === 'reserved'} className="block h-11 lg:h-9 w-full rounded-lg border border-slate-300 bg-white px-3 dark:border-navy-700 dark:bg-navy-900">
         <option value="">社員を選択してください</option>
         {groups
           .filter((g) => g.emps.length)

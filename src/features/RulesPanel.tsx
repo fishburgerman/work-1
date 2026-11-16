@@ -222,7 +222,7 @@ function RuleFormModal({ open, onClose, rule }: { open: boolean; onClose: () => 
                   onClick={() => toggleType(t)}
                   className={cx(
                     'min-h-10 rounded-full border px-3 text-[13px] font-medium transition-colors',
-                    on ? 'border-navy-700 bg-navy-700 text-white dark:border-navy-400 dark:bg-navy-500' : 'border-slate-300 text-slate-600 dark:border-navy-700 dark:text-slate-300',
+                    on ? 'border-navy-700 bg-navy-700 text-white dark:border-navy-400 dark:bg-navy-500 dark:text-navy-950' : 'border-slate-300 text-slate-600 dark:border-navy-700 dark:text-slate-300',
                   )}
                 >
                   {t}
@@ -272,7 +272,7 @@ export function DepartmentsCard() {
           placeholder="新しい部署名"
           aria-label="新しい部署名"
           maxLength={30}
-          className="h-11 min-w-0 flex-1 rounded-lg border border-slate-300 bg-white px-3 dark:border-navy-700 dark:bg-navy-950"
+          className="h-11 lg:h-9 min-w-0 flex-1 rounded-lg border border-slate-300 bg-white px-3 dark:border-navy-700 dark:bg-navy-900"
         />
         <Button type="submit" variant="secondary" icon={Plus} disabled={!name.trim()}>
           追加

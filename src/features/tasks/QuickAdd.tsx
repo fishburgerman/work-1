@@ -65,10 +65,10 @@ export function QuickAdd({ defaults, onCreated, onDetail }: { defaults?: Partial
           aria-label="タスクを追加"
           maxLength={100}
           enterKeyHint="done"
-          className="h-12 min-w-0 flex-1 rounded-xl border border-slate-300 bg-white px-4 text-[15px] shadow-sm focus:border-navy-500 focus:outline-none focus:ring-2 focus:ring-navy-500/25 dark:border-navy-700 dark:bg-navy-950"
+          className="h-12 min-w-0 flex-1 rounded-xl lg:h-10 border border-slate-300 bg-white px-4 text-[15px] focus:border-navy-500 focus:outline-none focus:ring-2 focus:ring-navy-500/25 dark:border-navy-700 dark:bg-navy-900"
           data-testid="quick-add-input"
         />
-        <button type="submit" disabled={!text.trim() || busy} className="inline-flex h-12 shrink-0 items-center gap-1 rounded-xl bg-navy-800 px-4 text-sm font-semibold text-white shadow-sm disabled:opacity-40 dark:bg-navy-500" data-testid="quick-add-submit">
+        <button type="submit" disabled={!text.trim() || busy} className="inline-flex h-12 shrink-0 items-center gap-1 rounded-xl lg:h-10 bg-navy-800 px-4 text-sm font-semibold text-white shadow-sm disabled:opacity-40 dark:bg-navy-500 dark:text-navy-950" data-testid="quick-add-submit">
           <Plus className="size-4" aria-hidden />
           追加
         </button>

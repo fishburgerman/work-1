@@ -130,7 +130,7 @@ export function HelpdeskPage() {
                 )}
               >
                 {t.label}
-                <span className={cx('rounded-full px-1.5 text-[11px] tabular-nums', f.status === t.key ? 'bg-white/20' : 'bg-slate-100 dark:bg-navy-800')}>{counts[t.key]}</span>
+                <span className={cx('rounded-full px-1.5 text-[11px] tabular-nums', f.status === t.key ? 'bg-white/20 dark:bg-black/25' : 'bg-slate-100 dark:bg-navy-800')}>{counts[t.key]}</span>
               </button>
             ))}
           </div>
@@ -145,7 +145,7 @@ export function HelpdeskPage() {
                   onChange={(e) => setF({ q: e.target.value })}
                   placeholder="番号・件名・申請者・内容で検索"
                   aria-label="問い合わせを検索"
-                  className="h-11 w-full rounded-lg border border-slate-300 bg-white pl-9 pr-3 shadow-sm focus:border-navy-500 focus:outline-none focus:ring-2 focus:ring-navy-500/25 dark:border-navy-700 dark:bg-navy-950"
+                  className="h-11 lg:h-9 w-full rounded-lg border border-slate-300 bg-white pl-9 pr-3 focus:border-navy-500 focus:outline-none focus:ring-2 focus:ring-navy-500/25 dark:border-navy-700 dark:bg-navy-900"
                 />
               </div>
               <FilterDisclosure activeCount={[f.category, f.priority, f.assignee].filter(Boolean).length + (f.sort !== 'priority' ? 1 : 0)} className="col-span-2">
