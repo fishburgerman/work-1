@@ -43,7 +43,7 @@ for (const scheme of ['light', 'dark'] as const) {
   test(`[Phase10] アクセシビリティ (WCAG 2.2 AA の自動検査)：全画面・主要なダイアログ（${scheme === 'light' ? 'ライト' : 'ダーク'}モード）`, async ({ page }) => {
     test.setTimeout(180_000);
     await page.emulateMedia({ colorScheme: scheme, reducedMotion: 'reduce' });
-    // 既定のテーマはダーク。両方のモードを検査するため、テーマを「端末設定」にして上の colorScheme に従わせる
+    // 既定のテーマはライト。両方のモードを検査するため、テーマを「端末設定」にして上の colorScheme に従わせる
     await page.addInitScript(() => localStorage.setItem('workcore-theme', 'system'));
     await page.goto('/');
     await expect(page.getByRole('heading', { name: 'ダッシュボード' })).toBeVisible();

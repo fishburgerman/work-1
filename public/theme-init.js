@@ -2,8 +2,8 @@
 (function () {
   try {
     var t = localStorage.getItem('workcore-theme');
-    // 既定 (未設定) はダーク
-    var dark = !t || t === 'dark' || (t === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    // 既定 (未設定) はライト
+    var dark = t === 'dark' || (t === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
     if (dark) document.documentElement.classList.add('dark');
   } catch (e) {}
 })();

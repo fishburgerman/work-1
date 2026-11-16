@@ -117,7 +117,7 @@ export function Modal({ open, onClose, title, description, children, footer, siz
     <ModalCloseContext.Provider value={requestClose}>
       <div className="fixed inset-0 z-50 flex items-end justify-center sm:items-center sm:p-6">
         {/* 背景は暗くするだけ (ぼかしは使わない) */}
-        <div className="absolute inset-0 animate-fade-in bg-black/35 dark:bg-black/55" onClick={requestClose} aria-hidden data-testid="modal-backdrop" />
+        <div className="absolute inset-0 animate-fade-in bg-slate-900/25 dark:bg-black/55" onClick={requestClose} aria-hidden data-testid="modal-backdrop" />
         <div
           ref={panelRef}
           role="dialog"

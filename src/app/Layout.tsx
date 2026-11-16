@@ -279,7 +279,7 @@ export function Layout({ active, children }: { active: string; children: ReactNo
       </header>
 
       <main id="main" tabIndex={-1} className={cx('outline-none transition-[padding] duration-150', collapsed ? 'lg:pl-16' : 'lg:pl-60')}>
-        <div className="mx-auto max-w-6xl px-4 pb-28 pt-5 sm:px-6 lg:px-8 lg:pb-12 lg:pt-6" data-swipe-surface>
+        <div className="mx-auto max-w-6xl px-4 pb-28 pt-5 sm:px-6 lg:px-10 lg:pb-16 lg:pt-8" data-swipe-surface>
           {children}
         </div>
       </main>

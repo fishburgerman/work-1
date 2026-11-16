@@ -10,14 +10,14 @@ function readMode(): ThemeMode {
   } catch {
     /* プライベートモード等では localStorage が使えないことがある */
   }
-  // 既定はダーク (UI リニューアル「Midnight Calm」はダークを基本に設計。ライト・端末設定も選べる)
-  return 'dark';
+  // 既定はライト (California Minimal はオフホワイトを基本に設計。ダーク・端末設定も選べる)
+  return 'light';
 }
 
 function apply(mode: ThemeMode) {
   const dark = mode === 'dark' || (mode === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
   document.documentElement.classList.toggle('dark', dark);
-  document.querySelector('meta[name="theme-color"]')?.setAttribute('content', dark ? '#1C1C1E' : '#F5F5F7');
+  document.querySelector('meta[name="theme-color"]')?.setAttribute('content', dark ? '#1C1C1E' : '#F7F6F2');
 }
 
 // 画面のどこから変更しても同じ値になるよう、テーマはモジュール単位で1つだけ持つ

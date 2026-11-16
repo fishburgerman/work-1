@@ -9,8 +9,8 @@ export function cx(...classes: (string | false | null | undefined)[]): string {
 
 type Variant = 'primary' | 'secondary' | 'ghost' | 'danger';
 const VARIANT: Record<Variant, string> = {
-  // 主要な操作だけアクセント (ダークはセージの地に暗い文字でコントラストを確保)。影・発光は使わない
-  primary: 'bg-navy-800 text-white hover:bg-navy-700 active:bg-navy-900 dark:bg-navy-500 dark:text-navy-950 dark:hover:bg-navy-400 dark:active:bg-navy-500',
+  // 主要な操作だけアクセント (ダークは明るいアクセントの地に暗い文字でコントラストを確保)。影・発光は使わない
+  primary: 'bg-navy-700 text-white hover:bg-navy-600 active:bg-navy-800 dark:bg-navy-500 dark:text-navy-950 dark:hover:bg-navy-400 dark:active:bg-navy-500',
   secondary:
     'bg-white text-slate-700 border border-slate-300 hover:bg-slate-50 active:bg-slate-100 dark:bg-navy-900 dark:text-slate-100 dark:border-navy-700 dark:hover:bg-surface-hover dark:active:bg-navy-800',
   ghost: 'text-slate-600 hover:bg-slate-100 active:bg-slate-200 dark:text-slate-300 dark:hover:bg-surface-hover dark:active:bg-navy-800',
@@ -80,7 +80,7 @@ export function Card({
   ...rest
 }: { className?: string; children: ReactNode; as?: 'section' | 'div' | 'article' } & Omit<HTMLAttributes<HTMLElement>, 'className' | 'children'>) {
   return (
-    <Tag className={cx('min-w-0 rounded-2xl border border-slate-200 bg-white dark:border-navy-800 dark:bg-navy-900', className)} {...rest}>
+    <Tag className={cx('min-w-0 rounded-2xl border border-slate-200 bg-white shadow-sm dark:border-navy-800 dark:bg-navy-900', className)} {...rest}>
       {children}
     </Tag>
   );
@@ -273,11 +273,11 @@ export function EmptyState({ icon: Icon, title, description, action }: { icon: L
 export function PageHeader({ title, description, actions }: { title: string; description?: string; actions?: ReactNode }) {
   return (
     <div
-      className="mb-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between lg:sticky lg:top-0 lg:z-20 lg:-mx-8 lg:-mt-6 lg:mb-6 lg:min-h-14 lg:border-b lg:border-slate-200 lg:bg-slate-50/95 lg:px-8 lg:py-2.5 lg:backdrop-blur-sm dark:lg:border-navy-800 dark:lg:bg-navy-950/95"
+      className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between lg:sticky lg:top-0 lg:z-20 lg:-mx-10 lg:-mt-8 lg:mb-8 lg:min-h-16 lg:border-b lg:border-slate-200/80 lg:bg-slate-50/90 lg:px-10 lg:py-3 lg:backdrop-blur-md dark:lg:border-navy-800 dark:lg:bg-navy-950/95"
       data-testid="page-toolbar"
     >
       <div className="min-w-0">
-        <h1 className="text-xl font-bold text-slate-900 lg:text-[17px] dark:text-white">{title}</h1>
+        <h1 className="text-xl font-bold tracking-tight text-slate-900 lg:text-[20px] dark:text-white">{title}</h1>
         {description && <p className="mt-0.5 text-sm text-slate-500 lg:text-xs dark:text-slate-400">{description}</p>}
       </div>
       {actions && <div className="flex shrink-0 flex-wrap gap-2">{actions}</div>}
