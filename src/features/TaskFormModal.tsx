@@ -3,7 +3,7 @@
  * 基本項目 (タスク名・期限・優先度・進捗) だけで保存できる。担当・部署・社員・プロジェクト・タグ・繰り返し・前提タスク・
  * チェックリスト・サブタスクは「詳細」を開いたときだけ入力する (シンプルなタスクはシンプルに)。
  */
-import { useEffect, useMemo, useState, type FormEvent } from 'react';
+import { useLayoutEffect, useMemo, useState, type FormEvent } from 'react';
 import { Copy, ListChecks, Plus, Save, Trash2, X } from 'lucide-react';
 import { useAppData } from '../app/AppData';
 import { describeRecurrenceFull } from '../domain/recurrence';
@@ -134,7 +134,9 @@ export function TaskFormModal({
   const [baseUpdatedAt, setBaseUpdatedAt] = useState<string | undefined>(undefined);
   const [conflict, setConflict] = useState(false);
 
-  useEffect(() => {
+  // 開いたときの初期化は描画の前に行う (useEffect だと、描画の後・初期化の前の一瞬に前回の入力が残り、
+  // その間に背景を押すと「未保存の変更あり」と判定されて閉じない。CI の E2E で発生)
+  useLayoutEffect(() => {
     if (open) {
       setBaseUpdatedAt(task?.updatedAt);
       setConflict(false);
