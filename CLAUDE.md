@@ -1,7 +1,7 @@
 # CLAUDE.md
 
 ## プロジェクト
-- このリポジトリ `kentokento469/work-1` は **WorkCore**（中小企業の業務管理・自動化を題材にした、学習・実験用の Web アプリ）のリポジトリ。
+- このリポジトリ `fishburgerman/work-1`（旧 `kentokento469/work-1`）は **WorkCore**（中小企業の業務管理・自動化を題材にした、学習・実験用の Web アプリ）のリポジトリ。
   リポジトリ名は `workcore` ではないが、「workcore リポジトリ」と言われたらここを指す。
 - 詳細は README.md を参照。開発の順序は docs/ROADMAP.md。
 

@@ -17,7 +17,7 @@
 > **Phase 6**：共通通知システム（通知センター・各画面の「要対応」・対象への直接移動と強調表示・未読と未処理の区別）、情報到達性の改善
 > **Phase 5**：部門をまたぐ自動化ルールの一元管理（入社・退職・在庫・問い合わせ・書類）、スマート入力（電話番号・郵便番号→住所・金額・候補）、戻る操作の最適化（履歴・モーダル・スワイプ）
 
-公開URL（GitHub Pages）: https://kentokento469.github.io/work-1/
+公開URL（GitHub Pages）: https://fishburgerman.github.io/work-1/
 
 > [!IMPORTANT]
 > **これはデモ環境です。** GitHub Pages + ブラウザ内保存（IndexedDB）の構成で、データは**その端末のブラウザにのみ**保存されます。
